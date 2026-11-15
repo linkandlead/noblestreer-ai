@@ -11,8 +11,8 @@ navigatie, CTA, formulier, SEO, merkkleuren) komt uit **Link & Lead One** en is 
 | Site-ID (publiek) | `43419df5-06b4-437a-9632-fd3f242a8364` |
 | Tenant | `Noblestreet AI` (`9cd29c4e-cd2c-4c39-bbfd-b8f66a627cbb`) |
 | Site-modus | `headless` (sites.config.modus), status `in_bouw` |
-| Bouw-account | `bouw@noblestreet-ai.vercel.app` (token-only, inloggen uitgeschakeld) |
-| Beoogd domein | `noblestreet-ai.vercel.app` (tijdelijk; ook gebruikt voor de lead-origincontrole) |
+| Bouw-account | `bouw@noblestreer-ai-link-and-lead.vercel.app` (token-only, inloggen uitgeschakeld) |
+| Beoogd domein | `noblestreer-ai-link-and-lead.vercel.app` (tijdelijk; ook gebruikt voor de lead-origincontrole) |
 
 ## Hoe de koppeling werkt
 
@@ -109,7 +109,7 @@ npm test                # 18 unit-tests: normalisatie, XSS, links, lege standen,
 ```
 
 ```bash
-npm run test:e2e        # 15 browsertests (Chromium): 375/768/1024/1440, menu, focus trap, Escape, touch, reduced motion, zonder JS, CSP, fonts
+npm run test:e2e        # 17 browsertests (Chromium): 375/768/1024/1440, menu, focus trap, Escape, touch, reduced motion, zonder JS, CSP, fonts
 ```
 
 ```bash
@@ -124,7 +124,7 @@ npm run check:seo -- http://127.0.0.1:4173/   # de view-source-check uit linkand
 3. Settings › Git › **Deploy Hooks** › maak een hook (branch van productie). Zet de URL in One Studio:
    `/admin/instellingen` › **Deploy Hook** (wordt opgeslagen in `sites.config.deploy_hook`). Vanaf dat
    moment bouwt elke publicatie in One Studio de site automatisch opnieuw.
-4. Controleer dat de site op `noblestreet-ai.vercel.app` draait: dat is het domein waarop het CMS de
+4. Controleer dat de site op `noblestreer-ai-link-and-lead.vercel.app` draait: dat is het domein waarop het CMS de
    herkomst van formulierleads toestaat. Ander domein? Pas eerst het domein van de site in One Control aan.
 5. Eigen domein koppelen → domein in One Control bijwerken → `INDEXEREN=ja` → redeploy.
 

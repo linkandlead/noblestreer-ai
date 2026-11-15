@@ -65,6 +65,9 @@ export default {
       og_beeld: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
       published: true,
       page_type: 'landing',
+      // Verplicht voor de publicatiecheck van One Studio (paginaValidatie): anders kan een redacteur
+      // de pagina niet opnieuw publiceren.
+      conversion_goal: 'contact',
       blokken: [
         {
           type: 'header',

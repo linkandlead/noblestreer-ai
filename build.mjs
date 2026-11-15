@@ -61,7 +61,8 @@ const ctx = {
   contactLink: contactSectie?.cta?.cta ?? model.site.actie ?? null,
   opties: {
     cmsBase: CMS_BASE,
-    siteId: FIXTURE ? '' : SITE_ID,
+    // Bij fixture-builds alleen met expliciete E2E_SITE_ID (browsertest van de lead-SDK, endpoint gemockt).
+    siteId: FIXTURE ? process.env.E2E_SITE_ID || '' : SITE_ID,
     versie,
     // Indexeren alleen expliciet aanzetten (INDEXEREN=ja) zodra het echte domein gekoppeld is.
     indexeren: process.env.INDEXEREN === 'ja',

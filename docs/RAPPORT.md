@@ -24,8 +24,8 @@ Alles hangt aan één nieuwe site; andere sites zijn niet aangeraakt.
 | Record | Waarde |
 |---|---|
 | `tenants` | `9cd29c4e-cd2c-4c39-bbfd-b8f66a627cbb` — Noblestreet AI |
-| `sites` | `43419df5-06b4-437a-9632-fd3f242a8364` — Noblestreet AI, domein `noblestreet-ai.vercel.app`, status `in_bouw`, `config.modus = headless` |
-| `gebruikers` | bouw-account `bouw@noblestreet-ai.vercel.app`, rol `klant`, alleen deze site; inloggen kan niet (willekeurig wachtwoord-hash, net als `maakBouwToken`); alleen de sha256 van het token is opgeslagen |
+| `sites` | `43419df5-06b4-437a-9632-fd3f242a8364` — Noblestreet AI, domein `noblestreer-ai-link-and-lead.vercel.app`, status `in_bouw`, `config.modus = headless` |
+| `gebruikers` | bouw-account `bouw@noblestreer-ai-link-and-lead.vercel.app`, rol `klant`, alleen deze site; inloggen kan niet (willekeurig wachtwoord-hash, net als `maakBouwToken`); alleen de sha256 van het token is opgeslagen |
 | `sites.design_tokens` | 12 kleursleutels → exact `#052824` / `#B1F9E1` (masterprompt §6) |
 | `sites.config.merk` | naam, tagline, slogan, `hoofd_nav` (Home/Diensten/Over ons/Inzichten/Contact), footerkolom, primaire actie, contact (alleen "Op afspraak"; géén verzonnen e-mail/telefoon/adres) |
 | `pages` `/` + 6 blokken | header · kaarten · mediatekst · artikelen_grid · cta · formulier (via `POST /api/cms/sync`) |
@@ -72,7 +72,7 @@ publiceren start, kon daardoor verouderde content krijgen. De client stuurt nu e
 
 - `npm test` — **18/18 geslaagd** (normalisatie, link-allowlist, XSS in kop/naam/JSON-LD/artikeltekst,
   0/1/4/5 kaarten, lege artikelstand, volgorde/uitschakelen, SEO-basis, geen token in output).
-- `npm run test:e2e` — **15/15 geslaagd** in Chromium met de productie-CSP:
+- `npm run test:e2e` — **17/17 geslaagd** (incl. echte lead-SDK onder CSP, lead-endpoint gemockt) in Chromium met de productie-CSP:
   geen horizontale scroll en één h1 op 375/768/1024/1440; footer-woordmerk binnen beeld; geen
   consolefouten; geen Google Fonts-aanvraag, Outfit 500 lokaal geladen; menu open/dicht met muis,
   Enter en Escape, focus trap, `inert` achtergrond, focus terug naar de knop, ankerlink sluit menu;
