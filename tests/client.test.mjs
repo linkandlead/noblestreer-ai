@@ -9,7 +9,7 @@ test('stuurt het token als Bearer naar /api/cms/content', async () => {
     return new Response(JSON.stringify({ ok: true, site: {}, paginas: [] }), { status: 200 })
   }
   await haalContent({ base: 'https://cms.test/', token: 'cms_abc', fetchImpl })
-  assert.equal(gezien.url, 'https://cms.test/api/cms/content')
+  assert.match(gezien.url, /^https:\/\/cms\.test\/api\/cms\/content\?_=\d+$/)
   assert.equal(gezien.auth, 'Bearer cms_abc')
 })
 

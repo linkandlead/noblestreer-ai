@@ -29,7 +29,9 @@ export async function haalContent({ base, token, fixture, fetchImpl = fetch, tim
   if (!token || !token.startsWith('cms_')) {
     throw new CmsFout('CMS_TOKEN ontbreekt of heeft een ongeldig formaat (verwacht cms_…).', 0)
   }
-  const url = `${base.replace(/\/$/, '')}/api/cms/content`
+  // Cache-buster: de lees-API stuurt `cache-control: public, max-age=60`. Een build die direct na
+  // publiceren door de Deploy Hook start, moet de verse versie krijgen, niet een gecachte.
+  const url = `${base.replace(/\/$/, '')}/api/cms/content?_=${Date.now()}`
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), timeoutMs)
   let res
