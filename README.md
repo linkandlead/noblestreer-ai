@@ -12,7 +12,8 @@ navigatie, CTA, formulier, SEO, merkkleuren) komt uit **Link & Lead One** en is 
 | Tenant | `Noblestreet AI` (`9cd29c4e-cd2c-4c39-bbfd-b8f66a627cbb`) |
 | Site-modus | `headless` (sites.config.modus), status `in_bouw` |
 | Bouw-account | `bouw@noblestreer-ai-link-and-lead.vercel.app` (token-only, inloggen uitgeschakeld) |
-| Beoogd domein | `noblestreer-ai-link-and-lead.vercel.app` (tijdelijk; ook gebruikt voor de lead-origincontrole) |
+| Vercel | project `noblestreer-ai` (team Link-and-Lead), Deploy Hook "Link & Lead One publiceren" |
+| Staging-URL | `https://noblestreer-ai-git-claude-eloquent-noether-o78esu-link-and-lead.vercel.app/` (= sitedomein in het CMS) |
 
 ## Hoe de koppeling werkt
 
@@ -116,17 +117,16 @@ npm run test:e2e        # 17 browsertests (Chromium): 375/768/1024/1440, menu, f
 npm run check:seo -- http://127.0.0.1:4173/   # de view-source-check uit linkandlead-cms (scripts/seo-basis-check.mjs)
 ```
 
-## Deployen (Vercel)
+## Deployen (Vercel) — staat ingericht
 
-1. Nieuw Vercel-project **`noblestreet-ai`** (team Link-and-Lead), gekoppeld aan deze repo.
-   Build `node build.mjs`, output `dist`, geen install-stap (staat in `vercel.json`).
-2. Environment Variables: `CMS_TOKEN` (Sensitive), `SITE_ID`, `CMS_BASE`, `INDEXEREN=nee`.
-3. Settings › Git › **Deploy Hooks** › maak een hook (branch van productie). Zet de URL in One Studio:
-   `/admin/instellingen` › **Deploy Hook** (wordt opgeslagen in `sites.config.deploy_hook`). Vanaf dat
-   moment bouwt elke publicatie in One Studio de site automatisch opnieuw.
-4. Controleer dat de site op `noblestreer-ai-link-and-lead.vercel.app` draait: dat is het domein waarop het CMS de
-   herkomst van formulierleads toestaat. Ander domein? Pas eerst het domein van de site in One Control aan.
-5. Eigen domein koppelen → domein in One Control bijwerken → `INDEXEREN=ja` → redeploy.
+- Project `noblestreer-ai` (team Link-and-Lead) is gekoppeld aan deze repo; build `node build.mjs`,
+  output `dist` (`vercel.json`). Env-vars `CMS_TOKEN` (Sensitive), `SITE_ID`, `CMS_BASE`, `INDEXEREN=nee`
+  zijn gezet.
+- Deploy Hook "Link & Lead One publiceren" (branch `claude/eloquent-noether-o78esu`) staat in
+  `sites.config.deploy_hook`: elke publicatie in One Studio bouwt de site opnieuw.
+- **Naar productie:** merge naar `main` (de productiebranch in Vercel), maak een Deploy Hook voor
+  `main` en zet die in One Studio › Instellingen › Deploy Hook. Koppel het domein, zet het domein van
+  de site in One Control op exact dat domein (lead-origincontrole), zet `INDEXEREN=ja` en redeploy.
 
 Is het CMS bij een build onbereikbaar, dan faalt de build bewust; Vercel laat de vorige deployment
 live (geen lege of verzonnen pagina).
