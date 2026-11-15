@@ -1,0 +1,321 @@
+{
+  "ok": true,
+  "site": {
+    "naam": "Noblestreet AI",
+    "domein": "noblestreet-ai.vercel.app",
+    "design_tokens": {
+      "wit": "#B1F9E1",
+      "diep": "#052824",
+      "fout": "#B1F9E1",
+      "mist": "#052824",
+      "nacht": "#052824",
+      "steen": "#B1F9E1",
+      "tekst": "#B1F9E1",
+      "limoen": "#B1F9E1",
+      "mistdof": "#B1F9E1",
+      "foutlicht": "#052824",
+      "limoenlicht": "#052824",
+      "limoendonker": "#B1F9E1"
+    },
+    "config": {
+      "merk": {
+        "naam": "Noblestreet AI",
+        "slogan": "De vrijheid om zelf te bouwen",
+        "contact": {
+          "bedrijf": "Noblestreet AI",
+          "reactietijd": "Op afspraak"
+        },
+        "tagline": "Zelf bouwen met AI. Met de zekerheid van technische expertise.",
+        "hoofd_nav": [
+          {
+            "href": "#top",
+            "titel": "Home"
+          },
+          {
+            "href": "#diensten",
+            "titel": "Diensten"
+          },
+          {
+            "href": "#over-ons",
+            "titel": "Over ons"
+          },
+          {
+            "href": "#inzichten",
+            "titel": "Inzichten"
+          },
+          {
+            "href": "#contact",
+            "titel": "Contact"
+          }
+        ],
+        "primaire_actie": {
+          "href": "#contact",
+          "titel": "Bespreek je project"
+        },
+        "footer_kolommen": [
+          {
+            "kop": "Navigatie",
+            "links": [
+              {
+                "href": "#diensten",
+                "titel": "Onze diensten"
+              },
+              {
+                "href": "#over-ons",
+                "titel": "Over Noblestreet AI"
+              },
+              {
+                "href": "#inzichten",
+                "titel": "Inzichten"
+              },
+              {
+                "href": "#contact",
+                "titel": "Contact"
+              }
+            ]
+          }
+        ],
+        "juridische_links": []
+      }
+    },
+    "merk": {
+      "naam": "Noblestreet AI",
+      "logo": null,
+      "logo_licht": null,
+      "logo_kleur": null,
+      "favicon": null,
+      "socials": {},
+      "contact": {
+        "bedrijf": "Noblestreet AI",
+        "reactietijd": "Op afspraak"
+      },
+      "tagline": "Zelf bouwen met AI. Met de zekerheid van technische expertise.",
+      "slogan": "De vrijheid om zelf te bouwen",
+      "badges": []
+    },
+    "navigatie": {
+      "hoofd": [
+        {
+          "titel": "Home",
+          "href": "#top"
+        },
+        {
+          "titel": "Diensten",
+          "href": "#diensten"
+        },
+        {
+          "titel": "Over ons",
+          "href": "#over-ons"
+        },
+        {
+          "titel": "Inzichten",
+          "href": "#inzichten"
+        },
+        {
+          "titel": "Contact",
+          "href": "#contact"
+        }
+      ],
+      "footer": [
+        {
+          "kop": "Navigatie",
+          "links": [
+            {
+              "titel": "Onze diensten",
+              "href": "#diensten"
+            },
+            {
+              "titel": "Over Noblestreet AI",
+              "href": "#over-ons"
+            },
+            {
+              "titel": "Inzichten",
+              "href": "#inzichten"
+            },
+            {
+              "titel": "Contact",
+              "href": "#contact"
+            }
+          ]
+        }
+      ],
+      "juridisch": [],
+      "actie": {
+        "titel": "Bespreek je project",
+        "href": "#contact"
+      }
+    },
+    "redirects": [],
+    "locale": "nl",
+    "organisatie": null,
+    "integraties": {}
+  },
+  "paginas": [
+    {
+      "slug": "/",
+      "titel": "Noblestreet AI | Bouw zelf met AI. Met technische zekerheid.",
+      "beschrijving": "Noblestreet AI helpt bedrijven zelfstandig software bouwen met AI. Van Claude Code-werkomgevingen tot technische controles en veilige livegang.",
+      "og_beeld": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/hero-werkplek-mwi6rtt3-qy57eg.webp",
+      "blokken": [
+        {
+          "type": "header",
+          "bg": "nacht",
+          "content": {
+            "extras": "geen",
+            "hoogte": "fullscreen",
+            "layout": "achtergrond",
+            "eyebrow": "Technische zekerheid voor een nieuwe generatie makers",
+            "focal_x": 50,
+            "focal_y": 47,
+            "heading": "Zelf bouwen met AI.",
+            "overlay": "donker",
+            "media_alt": "Warme werkruimte met laptop en natuurlijk licht; tijdelijke voorbeeldfotografie",
+            "media_type": "afbeelding",
+            "subheading": "Jouw ideeën verdienen een sterke technische basis. Wij helpen je AI-software professioneel te bouwen, controleren en publiceren.",
+            "cta_primair_link": "#diensten",
+            "media_afbeelding": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/hero-werkplek-mwi6rtt3-qy57eg.webp",
+            "cta_primair_label": "Ontdek onze expertise"
+          }
+        },
+        {
+          "type": "kaarten",
+          "bg": "diep",
+          "content": {
+            "intro": "Je bouwt zelf met AI. Wij zorgen voor de kennis, structuur en controles die professioneel werken mogelijk maken.",
+            "items": [
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- Claude Code professioneel instellen\n- GitHub en versiebeheer\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht",
+                "titel": "AI Workspace"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Technische controle voordat je AI-gebouwde website, app of tool livegaat.\n- Code en architectuur beoordelen\n- Toegang en beveiliging\n- Database en privacy\n- Prestaties en stabiliteit\n- Publicatie en livegang",
+                "titel": "AI Launch Check"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Onafhankelijk advies om met AI goede technische keuzes te maken.\n- Technische roadmap\n- Keuze van AI-tools\n- Architectuur en code reviews\n- Governance en werkrichtlijnen\n- Sparren met een softwarearchitect",
+                "titel": "AI Guidance"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Technische hulp bij publicatie, beheer en verdere ontwikkeling.\n- Technische verbeteringen\n- Nieuwe versies publiceren\n- Monitoring en back-ups\n- Problemen helpen oplossen\n- Veilig doorontwikkelen",
+                "titel": "AI Support"
+              }
+            ],
+            "titel": "Techniek die je verder brengt.",
+            "eyebrow": "",
+            "kolommen": "4"
+          }
+        },
+        {
+          "type": "mediatekst",
+          "bg": "nacht",
+          "content": {
+            "knop": "#contact",
+            "beeld": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/team-werksessie-mwi6rvpr-50a1io.webp",
+            "titel": "Persoonlijk in contact. Professioneel in techniek.",
+            "punten": [],
+            "alineas": [
+              {
+                "tekst": "Noblestreet AI combineert jarenlange ervaring in softwareontwikkeling met een persoonlijke, praktische aanpak. Arnaud is een technisch aanspreekpunt voor organisaties die AI professioneel willen inzetten."
+              }
+            ],
+            "eyebrow": "Beeld ter illustratie",
+            "beeld_alt": "Zakelijke werksessie in warm licht; tijdelijke voorbeeldfoto, geen afbeelding van het werkelijke team",
+            "knoptekst": "Maak kennis met ons",
+            "beeldzijde": "rechts"
+          }
+        },
+        {
+          "type": "artikelen_grid",
+          "bg": "diep",
+          "content": {
+            "titel": "Nieuwe inzichten. Heldere antwoorden.",
+            "eyebrow": "",
+            "maximaal": 3
+          }
+        },
+        {
+          "type": "cta",
+          "bg": "diep",
+          "content": {
+            "knop": "#contact-formulier",
+            "meta": [
+              {
+                "tekst": "Op afspraak"
+              },
+              {
+                "tekst": "Persoonlijk technisch aanspreekpunt"
+              }
+            ],
+            "tekst": "Vertel ons wat je wilt ontwikkelen of wat je al met AI hebt gebouwd. We denken graag met je mee.",
+            "titel": "Samen verder bouwen.",
+            "eyebrow": "Contact",
+            "knoptekst": "Plan een gesprek"
+          }
+        },
+        {
+          "type": "formulier",
+          "bg": "diep",
+          "content": {
+            "intro": "Laat je gegevens achter; we nemen contact met je op om een kennismaking te plannen.",
+            "soort": "contact",
+            "titel": "Bespreek je project",
+            "eyebrow": "",
+            "voetnoot": "We gebruiken je gegevens alleen om op je aanvraag te reageren.",
+            "knoptekst": "Plan een gesprek",
+            "bevestigingstekst": "Bedankt. Je aanvraag is ontvangen; we nemen zo snel mogelijk contact met je op."
+          }
+        }
+      ]
+    }
+  ],
+  "popups": [],
+  "_fixture": "ALLEEN VOOR ONTWIKKELING/TESTS. Kopie van de echte /api/cms/content-respons; records.artikelen zijn FICTIEVE testrecords (niet gepubliceerd in het CMS).",
+  "records": {
+    "artikelen": [
+      {
+        "id": "fixture-1",
+        "slug": "professioneel-met-claude-code-werken",
+        "titel": "Wat heb je nodig om professioneel met Claude Code te werken?",
+        "rubriek": "Praktijk",
+        "antwoordblok": null,
+        "samenvatting": "Een AI-tool installeren is pas het begin. Deze onderdelen maken het verschil tussen experimenteren en betrouwbaar ontwikkelen.",
+        "hoofdtekst": "Testtekst voor de artikelroute.\n\n## Tussenkop\n\nTweede alinea met <script>alert(1)</script> als XSS-test.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-claude-code-mwi6rx3t-j7jscg.webp",
+        "gepubliceerd_op": "2026-11-12",
+        "auteur": null
+      },
+      {
+        "id": "fixture-2",
+        "slug": "ai-app-klaar-voor-klanten",
+        "titel": "Je AI-app is af. Maar is hij klaar voor klanten?",
+        "rubriek": "Kwaliteit",
+        "antwoordblok": null,
+        "samenvatting": "Vijf vragen die je moet stellen voordat je zelfgebouwde software live zet.",
+        "hoofdtekst": "Testtekst.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-klaar-voor-klanten-mwi6ryca-zyrg9m.webp",
+        "gepubliceerd_op": "2026-11-05",
+        "auteur": null
+      },
+      {
+        "id": "fixture-3",
+        "slug": "zelf-bouwen-zonder-er-alleen-voor-te-staan",
+        "titel": "Zelf software bouwen, zonder er alleen voor te staan.",
+        "rubriek": "Visie",
+        "antwoordblok": null,
+        "samenvatting": "Hoe AI de rol van softwareontwikkelaars verandert — en waarom technische expertise belangrijk blijft.",
+        "hoofdtekst": "Testtekst.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-niet-alleen-mwi6rzac-qgh88u.webp",
+        "gepubliceerd_op": "2026-10-28",
+        "auteur": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "noblestreet-ai",
+  "private": true,
+  "type": "module",
+  "description": "Noblestreet AI — headless frontend (CMS-model A) op Link & Lead One.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "build:fixture": "CMS_FIXTURE=1 node build.mjs",
+    "serve": "node scripts/serve.mjs dist",
+    "preview": "node build.mjs && node scripts/serve.mjs dist",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "CMS_FIXTURE=1 node build.mjs && node --test tests/e2e/*.test.mjs",
+    "check:seo": "node scripts/seo-check.mjs",
+    "cms:push": "node scripts/cms-push.mjs cms/blauwdruk.mjs",
+    "cms:media": "node scripts/cms-media.mjs"
+  }
+}
