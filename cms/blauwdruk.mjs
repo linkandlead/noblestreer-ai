@@ -151,11 +151,11 @@ export default {
           content: {
             // eyebrow = het kleine fotolabel rechtsboven in de beeldbanner.
             eyebrow: 'Beeld ter illustratie',
-            titel: 'Persoonlijk in contact. Professioneel in techniek.',
+            titel: 'Een vast team. Persoonlijk betrokken.',
             alineas: [
               {
                 tekst:
-                  'Noblestreet AI combineert jarenlange ervaring in softwareontwikkeling met een persoonlijke, praktische aanpak. Arnaud is een technisch aanspreekpunt voor organisaties die AI professioneel willen inzetten.',
+                  'Bij Noblestreet AI werk je met een vast team van AI- en softwarespecialisten. We zetten je AI-workflow samen met je op, blijven bereikbaar als er iets aangepast of opgelost moet worden en zorgen dat alles veilig blijft werken. Wil je een AI-product laten bouwen? Dan begeleiden we het van idee tot livegang.',
               },
             ],
             punten: [],
@@ -163,7 +163,7 @@ export default {
             beeld_alt: 'Zakelijke werksessie in warm licht; tijdelijke voorbeeldfoto, geen afbeelding van het werkelijke team',
             beeldzijde: 'rechts',
             knop: '#contact',
-            knoptekst: 'Maak kennis met ons',
+            knoptekst: 'Maak kennis met het team',
           },
         },
         {
