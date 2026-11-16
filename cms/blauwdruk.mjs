@@ -64,7 +64,7 @@ export default {
       titel: 'Noblestreet AI | AI in je bedrijf, goed geregeld',
       beschrijving:
         'Noblestreet AI zet je AI-workflow professioneel op, ondersteunt je team en houdt alles veilig en werkend. En we bouwen AI-producten op maat.',
-      og_beeld: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
+      og_beeld: `${MEDIA}/hero-glas-mwj05kar-5dromk.webp`,
       published: true,
       page_type: 'landing',
       // Verplicht voor de publicatiecheck van One Studio (paginaValidatie): anders kan een redacteur
@@ -84,10 +84,10 @@ export default {
             cta_primair_label: 'Bekijk wat we voor je doen',
             cta_primair_link: '#diensten',
             media_type: 'afbeelding',
-            media_afbeelding: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
-            media_alt: 'Warme werkruimte met laptop en natuurlijk licht; tijdelijke voorbeeldfotografie',
-            focal_x: 50,
-            focal_y: 47,
+            media_afbeelding: `${MEDIA}/hero-glas-mwj05kar-5dromk.webp`,
+            media_alt: 'Een hand plaatst een glazen plaatje in een opgebouwde constructie van glas en metaal op een marmeren voet',
+            focal_x: 70,
+            focal_y: 50,
             overlay: 'donker',
             extras: 'geen',
             // USP's = de wisselende laatste regel van de kop (klantvoordelen).

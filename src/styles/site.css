@@ -239,7 +239,6 @@ html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
   .wordmark { font-size: 20px }
   .menu-toggle { min-width: 96px; padding: 11px 13px }
   .hero { min-height: 770px; height: 100svh; max-height: 890px }
-  .hero-photo { --focus-x: 57%; object-position: var(--focus-x) center }
   .hero::before { background: linear-gradient(90deg, rgba(5, 40, 36, .84), rgba(5, 40, 36, .55)), linear-gradient(0deg, rgba(5, 40, 36, .65), transparent 60%) }
   .hero-content { padding: 100px var(--side) 200px; justify-content: center }
   .hero-title { font-size: 44px; line-height: 1.16; letter-spacing: -.02em; max-width: 600px }
