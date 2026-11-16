@@ -61,11 +61,18 @@ ${body}
 `
 }
 
+// Klikken en typen in de pagina-editor (linkandlead-cms B-127): alleen als de voorvertoning het vraagt
+// (opties.klikken, ingesloten in de editor) krijgt de eerste tag van elke sectie data-cms-sectie="<blok-id>".
+function metSectie(ctx, s, uit) {
+  if (!ctx.opties?.klikken || !s.blokId || !uit) return uit
+  return uit.replace(/^(\s*<[a-z][a-z0-9]*)/, `$1 data-cms-sectie="${attr(s.blokId)}"`)
+}
+
 // Rendert een CMS-pagina (homepage of subpagina zoals /team) uit haar blokken.
 export function homeHtml(ctx) {
   const { model } = ctx
   const p = model.pagina
-  const body = model.secties.map((s) => SECTIES[s.soort]?.(ctx, s) ?? '').join('\n')
+  const body = model.secties.map((s) => metSectie(ctx, s, SECTIES[s.soort]?.(ctx, s) ?? '')).join('\n')
   const hero = model.secties.find((s) => s.soort === 'hero')
   const pad = !p || p.slug === '/' ? '/' : `${p.slug}/`
   return documentHtml(ctx, {

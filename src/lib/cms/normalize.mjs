@@ -353,6 +353,8 @@ function normaliseerSite(rauw, waarschuwingen) {
  * @param {unknown} rauw   respons van /api/cms/content
  * @param {{ slug?: string }} [opties]
  */
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
 export function normaliseer(rauw, { slug = '/' } = {}) {
   const data = obj(rauw)
   const waarschuwingen = []
@@ -369,6 +371,7 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
     for (let i = 0; i < blokken.length; i++) {
       const b = blokken[i]
       const c = obj(b.content)
+      const voor = secties.length
       switch (b.type) {
         case 'header':
           secties.push(sectieHero(c, heroTeller++))
@@ -404,6 +407,8 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
         default:
           if (b.type) waarschuwingen.push(`Bloktype "${tekst(b.type, 40)}" wordt door deze frontend niet getoond.`)
       }
+      // Het id van het blok (lees-API v1, alleen in de voorvertoning): voor klikken en typen in de pagina-editor.
+      if (secties.length > voor && typeof b.id === 'string' && UUID.test(b.id)) secties[voor].blokId = b.id
     }
   } else {
     waarschuwingen.push(`Pagina "${slug}" niet gevonden of niet gepubliceerd in het CMS.`)

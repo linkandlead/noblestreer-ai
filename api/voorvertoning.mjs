@@ -6,6 +6,7 @@ export async function GET(request) {
   return voorvertoning(request, {
     cmsBase: process.env.CMS_BASE || 'https://linkandlead.nl',
     token: process.env.CMS_TOKEN,
+    editorUrl: process.env.CMS_BEHEER_URL,
     versie: (process.env.VERCEL_GIT_COMMIT_SHA || 'vv').slice(0, 10),
   })
 }
