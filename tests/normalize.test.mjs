@@ -246,3 +246,18 @@ test('overzicht /inzichten: alle artikelen, gelijk raster, rubriekfilter; homepa
   assert.ok(homeHtmlUit.includes('href="/inzichten/">Alle inzichten'))
   assert.ok(!homeHtmlUit.includes('filter-knop'))
 })
+
+test('/diensten: zelfde dienstenblok als lijst met ankers; homepage blijft getrapt raster; geen wisseltekst in compacte kop', () => {
+  const m = normaliseer(fixture, { slug: '/diensten' })
+  const d = m.secties.find((x) => x.soort === 'diensten')
+  assert.equal(d.overzicht, true)
+  assert.equal(d.items[1].anker, 'ai-launch-check')
+  const html = homeHtml({ ...ctxVoor(m), isHome: false })
+  assert.ok(html.includes('class="service-rows"'))
+  assert.ok(html.includes('id="ai-workspace"'))
+  assert.equal((html.match(/class="service-row"/g) ?? []).length, d.items.length)
+  assert.ok(!html.includes('data-rotate'), 'compacte kop zonder wisseltekst')
+  assert.ok(html.includes('Bespreek AI Workspace met ons'))
+  const home = homeHtml(ctxVoor(normaliseer(fixture)))
+  assert.ok(home.includes('service-stage') && !home.includes('service-rows'))
+})

@@ -479,6 +479,75 @@
           }
         }
       ]
+    },
+    {
+      "slug": "/diensten",
+      "titel": "Diensten | Noblestreet AI",
+      "beschrijving": "Wat Noblestreet AI voor je doet.",
+      "og_beeld": null,
+      "blokken": [
+        {
+          "type": "header",
+          "bg": "nacht",
+          "content": {
+            "layout": "compact",
+            "hoogte": "compact",
+            "eyebrow": "Diensten",
+            "heading": "Wat we voor je doen. Van opzet tot support.",
+            "subheading": "Vijf manieren waarop we je helpen.",
+            "media_type": "geen",
+            "usps": []
+          }
+        },
+        {
+          "type": "kaarten",
+          "bg": "diep",
+          "content": {
+            "intro": "Je bouwt zelf met AI. Wij zorgen voor de kennis, structuur en controles die professioneel werken mogelijk maken.",
+            "items": [
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- AI-ontwikkeltools professioneel instellen\n- Versiebeheer en samenwerking\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht",
+                "titel": "AI Workspace"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Technische controle voordat je AI-gebouwde website, app of tool livegaat.\n- Code en architectuur beoordelen\n- Toegang en beveiliging\n- Database en privacy\n- Prestaties en stabiliteit\n- Publicatie en livegang",
+                "titel": "AI Launch Check"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Onafhankelijk advies om met AI goede technische keuzes te maken.\n- Technische roadmap\n- Keuze van AI-tools\n- Architectuur en code reviews\n- Governance en werkrichtlijnen\n- Sparren met een softwarearchitect",
+                "titel": "AI Guidance"
+              },
+              {
+                "link": "#contact",
+                "icoon": "geen",
+                "tekst": "Technische hulp bij publicatie, beheer en verdere ontwikkeling.\n- Technische verbeteringen\n- Nieuwe versies publiceren\n- Monitoring en back-ups\n- Problemen helpen oplossen\n- Veilig doorontwikkelen",
+                "titel": "AI Support"
+              }
+            ],
+            "titel": "Techniek die je verder brengt.",
+            "eyebrow": "",
+            "kolommen": "4"
+          }
+        },
+        {
+          "type": "cta",
+          "bg": "diep",
+          "content": {
+            "eyebrow": "Contact",
+            "titel": "Welke dienst past bij jou?",
+            "tekst": "We denken graag mee.",
+            "knoptekst": "Plan een gesprek",
+            "knop": "/#contact-formulier",
+            "meta": []
+          }
+        }
+      ]
     }
   ],
   "popups": [],

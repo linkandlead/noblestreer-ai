@@ -39,7 +39,7 @@ export function FullScreenMenu(ctx) {
 
 export function Hero(ctx, s) {
   const Kop = s.niveau === 1 ? 'h1' : 'h2'
-  const rotatie = s.niveau === 1 ? ctx.rotatie : []
+  const rotatie = s.niveau === 1 && !s.compact ? ctx.rotatie : []
   const regels = s.kopRegels
   return html`<section class="hero${s.compact ? ' hero--compact' : ''}" aria-label="Introductie">
     ${s.beeld ? html`<img class="hero-photo" src="${attr(s.beeld)}" alt="${attr(s.beeldAlt)}" fetchpriority="high" decoding="async">` : ''}
@@ -56,7 +56,30 @@ export function Hero(ctx, s) {
   </section>`
 }
 
+// Diensten als uitgebreide lijst (pagina /diensten): per dienst een brede rij met nummer, titel,
+// beschrijving, de punten en een eigen gesprekslink. Elke rij heeft een anker (/diensten/#ai-workspace).
+function ServiceList(ctx, s) {
+  const contact = ctx.contactLink
+  return html`<section id="diensten" class="section-pad services services--lijst" aria-labelledby="services-heading">
+    <div class="section-heading" data-reveal>
+      <div>${s.eyebrow ? html`<p class="eyebrow section-eyebrow">${esc(s.eyebrow)}</p>` : ''}<h2 class="services-title" id="services-heading">${esc(s.titel || 'Diensten')}</h2></div>
+      ${s.intro ? html`<div class="services-head-right"><p>${esc(s.intro)}</p></div>` : ''}
+    </div>
+    <ol class="service-rows" role="list">${s.items.map(
+      (d) => html`<li class="service-row" id="${attr(d.anker)}" data-reveal>
+        <div class="service-row-head"><span class="service-number">${esc(d.nummer)} /</span><h3>${esc(d.titel)}</h3></div>
+        <div class="service-row-body">
+          ${d.beschrijving ? html`<p class="service-row-intro">${esc(d.beschrijving)}</p>` : ''}
+          ${d.punten.length ? html`<ul class="service-row-points" role="list">${d.punten.map((p) => html`<li>${esc(p)}</li>`)}</ul>` : ''}
+          ${contact ? html`<a class="text-link"${linkAttrs(maakHref(ctx, contact.href))}>Bespreek ${esc(d.titel)} met ons <span class="arrow" aria-hidden="true">↗</span></a>` : ''}
+        </div>
+      </li>`,
+    )}</ol>
+  </section>`
+}
+
 export function ServiceGrid(ctx, s) {
+  if (s.overzicht) return ServiceList(ctx, s)
   const n = s.items.length
   const kop = s.titel || s.intro || n
   if (!kop) return ''

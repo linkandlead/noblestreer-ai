@@ -102,6 +102,20 @@ h2 { font-weight: 500; letter-spacing: -.02em; font-size: clamp(42px, 4.2vw, 66p
 }
 .services-foot { display: flex; justify-content: flex-end; margin-top: 40px }
 
+/* Diensten als lijst (/diensten) */
+.service-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(177, 249, 225, .42) }
+.service-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px 80px; padding: 56px 0 64px; border-bottom: 1px solid rgba(177, 249, 225, .42); scroll-margin-top: 30px }
+.service-row-head { position: relative }
+.service-row-head .service-number { position: static; display: block; font-size: 14px; margin-bottom: 18px }
+.service-row-head h3 { font-weight: 500; font-size: clamp(38px, 4vw, 60px); line-height: 1.05; letter-spacing: -.03em; margin: 0 }
+.service-row-head::after { content: ''; position: absolute; left: 0; bottom: -64px; width: 8px; height: 8px; background: var(--mint); transform: translateY(4px) }
+.service-row-intro { font-size: 24px; line-height: 1.35; letter-spacing: -.015em; margin: 0 0 30px; max-width: 620px }
+.service-row-points { list-style: none; margin: 0 0 30px !important; padding: 0; max-width: 520px; font-size: 15px; line-height: 1.55 }
+.service-row-points li { padding: 9px 0; border-bottom: 1px solid currentColor }
+.service-row-points li:first-child { border-top: 1px solid currentColor }
+.service-row-body > .text-link { margin-top: 6px }
+.service-row:target .service-row-head h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 10px }
+
 /* Logostrook */
 .logostrip { border-top: 1px solid rgba(177, 249, 225, .26); border-bottom: 1px solid rgba(177, 249, 225, .26); padding: 34px 0; overflow: hidden }
 .logostrip-head { padding: 0 var(--side) 26px; display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap }
@@ -295,6 +309,9 @@ html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
 @media (max-width: 760px) {
   .hero--compact { padding: 140px var(--side) 70px }
   .team-grid { grid-template-columns: 1fr; gap: 50px }
+  .service-row { grid-template-columns: 1fr; gap: 26px; padding: 40px 0 46px }
+  .service-row-head::after { bottom: -46px }
+  .service-row-intro { font-size: 20px }
   .logo-list { gap: 44px; padding-right: 44px }
   .logo-list img { height: 24px }
   :root { --side: 20px }

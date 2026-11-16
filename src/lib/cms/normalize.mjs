@@ -172,7 +172,12 @@ function maakLink(label, href) {
   return l && h ? { label: l, href: h } : null
 }
 
-function sectieDiensten(c, waarschuwingen) {
+// Anker voor een dienst ('AI Launch Check' → 'ai-launch-check'), voor diepe links naar /diensten/#….
+export function anker(t) {
+  return tekst(t, 120).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+}
+
+function sectieDiensten(c, waarschuwingen, overzicht = false) {
   const rauw = lijst(c.items)
   if (rauw.length > MAX_DIENSTEN) waarschuwingen.push(`Kaartenrij heeft ${rauw.length} kaarten; het ontwerp toont er maximaal ${MAX_DIENSTEN}.`)
   const items = rauw
@@ -189,6 +194,7 @@ function sectieDiensten(c, waarschuwingen) {
         punten,
         href: veiligeHref(k.link) ?? '#contact',
         rotatieLabel: rotatieLabel(k.titel),
+        anker: anker(k.titel),
       }
     })
   return {
@@ -197,6 +203,8 @@ function sectieDiensten(c, waarschuwingen) {
     titel: tekst(c.titel, 200),
     intro: tekst(c.intro, 600),
     items,
+    // Op een subpagina (bv. /diensten) als uitgebreide lijst; op de homepage het getrapte raster.
+    overzicht,
   }
 }
 
@@ -366,7 +374,7 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
           secties.push(sectieHero(c, heroTeller++))
           break
         case 'kaarten':
-          secties.push(sectieDiensten(c, waarschuwingen))
+          secties.push(sectieDiensten(c, waarschuwingen, slug !== '/'))
           break
         case 'mediatekst':
           secties.push(sectieTeam(c))

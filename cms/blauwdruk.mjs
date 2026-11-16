@@ -37,7 +37,7 @@ export default {
     contact: { bedrijf: 'Noblestreet AI', reactietijd: 'Op afspraak' },
     hoofd_nav: [
       { titel: 'Home', href: '/#top' },
-      { titel: 'Diensten', href: '/#diensten' },
+      { titel: 'Diensten', href: '/diensten/' },
       { titel: 'Over ons', href: '/#over-ons' },
       { titel: 'Team', href: '/team/' },
       { titel: 'Inzichten', href: '/inzichten/' },
@@ -47,7 +47,7 @@ export default {
       {
         kop: 'Navigatie',
         links: [
-          { titel: 'Onze diensten', href: '/#diensten' },
+          { titel: 'Onze diensten', href: '/diensten/' },
           { titel: 'Over Noblestreet AI', href: '/#over-ons' },
           { titel: 'Ons team', href: '/team/' },
           { titel: 'Inzichten', href: '/inzichten/' },
@@ -100,6 +100,9 @@ export default {
           },
         },
         {
+          // GEDEELD BLOK in het CMS (sleutel 'noblestreet-diensten'): staat ook op /diensten (lijstweergave).
+          // De sync-API maakt geen gedeelde blokken: /diensten is in het CMS zelf aangemaakt; push deze
+          // blauwdruk dus niet opnieuw zonder die koppeling te herstellen.
           type: 'kaarten',
           bg: 'diep',
           content: {
@@ -114,35 +117,35 @@ export default {
                 titel: 'AI Workspace',
                 tekst:
                   'Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- AI-ontwikkeltools professioneel instellen\n- Versiebeheer en samenwerking\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht',
-                link: '#contact',
+                link: '/diensten/#ai-workspace',
               },
               {
                 icoon: 'geen',
                 titel: 'AI Launch Check',
                 tekst:
                   'Technische controle voordat je AI-gebouwde website, app of tool livegaat.\n- Code en architectuur beoordelen\n- Toegang en beveiliging\n- Database en privacy\n- Prestaties en stabiliteit\n- Publicatie en livegang',
-                link: '#contact',
+                link: '/diensten/#ai-launch-check',
               },
               {
                 icoon: 'geen',
                 titel: 'AI Guidance',
                 tekst:
                   'Onafhankelijk advies om met AI goede technische keuzes te maken.\n- Technische roadmap\n- Keuze van AI-tools\n- Architectuur en code reviews\n- Governance en werkrichtlijnen\n- Sparren met een softwarearchitect',
-                link: '#contact',
+                link: '/diensten/#ai-guidance',
               },
               {
                 icoon: 'geen',
                 titel: 'AI Support',
                 tekst:
                   'Technische hulp bij publicatie, beheer en verdere ontwikkeling.\n- Technische verbeteringen\n- Nieuwe versies publiceren\n- Monitoring en back-ups\n- Problemen helpen oplossen\n- Veilig doorontwikkelen',
-                link: '#contact',
+                link: '/diensten/#ai-support',
               },
               {
                 icoon: 'geen',
                 titel: 'AI Development',
                 tekst:
                   'Wij bouwen AI-producten voor je: van idee tot werkende, veilige applicatie.\n- Idee en productontwerp\n- Prototype en validatie\n- Ontwikkeling met AI\n- Veilige livegang\n- Beheer en doorontwikkeling',
-                link: '#contact',
+                link: '/diensten/#ai-development',
               },
             ],
           },
