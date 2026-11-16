@@ -22,7 +22,7 @@ const MIME = {
 export function startServer(dir = 'dist', port = 0) {
   const root = path.resolve(dir)
   const vercel = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'))
-  const globaal = vercel.headers.find((h) => h.source === '/(.*)')?.headers ?? []
+  const globaal = vercel.headers.find((h) => h.source.startsWith('/(('))?.headers ?? []
   const server = createServer((req, res) => {
     const url = new URL(req.url, 'http://x')
     let pad = path.normalize(decodeURIComponent(url.pathname)).replace(/^(\.\.[/\\])+/, '')
