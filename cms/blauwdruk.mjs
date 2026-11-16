@@ -36,20 +36,22 @@ export default {
     // Bewust GEEN e-mail/telefoon/adres: die zijn (nog) niet gevalideerd aangeleverd.
     contact: { bedrijf: 'Noblestreet AI', reactietijd: 'Op afspraak' },
     hoofd_nav: [
-      { titel: 'Home', href: '#top' },
-      { titel: 'Diensten', href: '#diensten' },
-      { titel: 'Over ons', href: '#over-ons' },
-      { titel: 'Inzichten', href: '#inzichten' },
-      { titel: 'Contact', href: '#contact' },
+      { titel: 'Home', href: '/#top' },
+      { titel: 'Diensten', href: '/#diensten' },
+      { titel: 'Over ons', href: '/#over-ons' },
+      { titel: 'Team', href: '/team/' },
+      { titel: 'Inzichten', href: '/#inzichten' },
+      { titel: 'Contact', href: '/#contact' },
     ],
     footer_kolommen: [
       {
         kop: 'Navigatie',
         links: [
-          { titel: 'Onze diensten', href: '#diensten' },
-          { titel: 'Over Noblestreet AI', href: '#over-ons' },
-          { titel: 'Inzichten', href: '#inzichten' },
-          { titel: 'Contact', href: '#contact' },
+          { titel: 'Onze diensten', href: '/#diensten' },
+          { titel: 'Over Noblestreet AI', href: '/#over-ons' },
+          { titel: 'Ons team', href: '/team/' },
+          { titel: 'Inzichten', href: '/#inzichten' },
+          { titel: 'Contact', href: '/#contact' },
         ],
       },
     ],
@@ -162,7 +164,7 @@ export default {
             beeld: `${MEDIA}/team-werksessie-mwi6rvpr-50a1io.webp`,
             beeld_alt: 'Zakelijke werksessie in warm licht; tijdelijke voorbeeldfoto, geen afbeelding van het werkelijke team',
             beeldzijde: 'rechts',
-            knop: '#contact',
+            knop: '/team/',
             knoptekst: 'Maak kennis met het team',
           },
         },
@@ -194,6 +196,54 @@ export default {
             knoptekst: 'Plan een gesprek',
             voetnoot: 'We gebruiken je gegevens alleen om op je aanvraag te reageren.',
             bevestigingstekst: 'Bedankt. Je aanvraag is ontvangen; we nemen zo snel mogelijk contact met je op.',
+          },
+        },
+      ],
+    },
+    {
+      slug: '/team',
+      titel: 'Ons team | Noblestreet AI',
+      beschrijving:
+        'Maak kennis met het team van Noblestreet AI: specialisten die je AI-workflow opzetten, ondersteunen en veilig houden, en AI-producten bouwen.',
+      published: true,
+      page_type: 'landing',
+      conversion_goal: 'contact',
+      blokken: [
+        {
+          type: 'header',
+          bg: 'nacht',
+          content: {
+            layout: 'compact',
+            hoogte: 'compact',
+            eyebrow: 'Over Noblestreet AI',
+            heading: 'Ons team. Persoonlijk betrokken.',
+            subheading:
+              'Een vast team van AI- en softwarespecialisten dat je AI-workflow opzet, ondersteunt en veilig houdt, en AI-producten voor je bouwt.',
+            media_type: 'geen',
+            extras: 'geen',
+            usps: [],
+          },
+        },
+        {
+          // De teamleden zelf beheer je in de collectie Team (One Studio › Team), niet in dit blok.
+          type: 'mensen',
+          bg: 'diep',
+          content: {
+            titel: 'Maak kennis met het team.',
+            intro: 'Dit zijn de mensen met wie je werkt: van de eerste opzet tot support en doorontwikkeling.',
+            maximaal: 12,
+          },
+        },
+        {
+          type: 'cta',
+          bg: 'diep',
+          content: {
+            eyebrow: 'Contact',
+            titel: 'Kennismaken?',
+            tekst: 'Vertel ons waar je staat met AI. We plannen graag een gesprek met het team.',
+            knoptekst: 'Plan een gesprek',
+            knop: '/#contact-formulier',
+            meta: [{ tekst: 'Op afspraak' }, { tekst: 'Vaste contactpersoon in het team' }],
           },
         },
       ],

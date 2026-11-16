@@ -61,17 +61,19 @@ ${body}
 `
 }
 
+// Rendert een CMS-pagina (homepage of subpagina zoals /team) uit haar blokken.
 export function homeHtml(ctx) {
   const { model } = ctx
   const p = model.pagina
   const body = model.secties.map((s) => SECTIES[s.soort]?.(ctx, s) ?? '').join('\n')
   const hero = model.secties.find((s) => s.soort === 'hero')
+  const pad = !p || p.slug === '/' ? '/' : `${p.slug}/`
   return documentHtml(ctx, {
     titel: p?.titel || model.site.naam,
     beschrijving: p?.beschrijving,
-    pad: '/',
+    pad,
     ogBeeld: p?.ogBeeld || hero?.beeld || null,
-    preloadBeeld: hero?.beeld || null,
+    preloadBeeld: hero && !hero.compact ? hero.beeld : null,
     body,
   })
 }

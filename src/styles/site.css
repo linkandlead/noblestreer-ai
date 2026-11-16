@@ -118,6 +118,21 @@ h2 { font-weight: 500; letter-spacing: -.02em; font-size: clamp(42px, 4.2vw, 66p
 .photo-label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; opacity: .7; position: absolute; right: var(--side); top: 24px; z-index: 3; color: white }
 .team .photo-label { top: 96px }
 
+/* Compacte hero (subpagina's zonder beeld) */
+.hero--compact { height: auto; min-height: 0; padding: 190px var(--side) 90px; border-bottom: 1px solid rgba(177, 249, 225, .26) }
+.hero--compact::before { display: none }
+.hero--compact .hero-content, .hero--compact .hero-bottom { position: static; padding: 0 }
+.hero--compact .hero-bottom { margin-top: 40px }
+.hero--compact .corner-marker { bottom: -4px }
+
+/* Teamraster (collectie Team) */
+.team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 60px 18px }
+.team-member-photo { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; background: rgba(177, 249, 225, .06); margin-bottom: 18px }
+.team-member-photo--leeg { display: grid; place-items: center; border: 1px solid rgba(177, 249, 225, .42); background: transparent; font-size: clamp(48px, 5vw, 80px); letter-spacing: -.03em }
+.team-member-role { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 8px; opacity: .84 }
+.team-member h3 { font-weight: 500; font-size: 26px; line-height: 1.15; letter-spacing: -.015em; margin: 0 0 12px }
+.team-member-text { font-size: 15px; line-height: 1.5; margin: 0 0 16px; max-width: 420px; opacity: .84 }
+
 /* Artikelen: 2:1:1 */
 .articles { padding: 130px var(--side) 160px; position: relative }
 .articles .section-heading { margin-bottom: 50px }
@@ -203,6 +218,7 @@ html.js [data-reveal] { opacity: 0; transform: translateY(22px); transition: opa
 html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
 
 @media (max-width: 1100px) {
+  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .service-stage { --s: calc((100cqw - 40px) / 3) }
   .service-item[data-pos='3'] { left: calc(var(--s) + 20px) }
   .service-title { font-size: 26px }
@@ -211,6 +227,8 @@ html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
   .contact-grid { grid-template-columns: 1fr }
 }
 @media (max-width: 760px) {
+  .hero--compact { padding: 140px var(--side) 70px }
+  .team-grid { grid-template-columns: 1fr; gap: 50px }
   :root { --side: 20px }
   .site-header { padding-top: 21px }
   .wordmark { font-size: 20px }

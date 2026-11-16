@@ -10,6 +10,7 @@
 //   kaarten         → diensten    (Kaartenrij; max. 5 kaarten; per kaart: titel, tekst = beschrijving + punten, link)
 //   mediatekst      → team        (Tekst met beeld; full-bleed foto + tekstoverlay)
 //   artikelen_grid  → artikelen   (collectie Artikelen, records.artikelen, max 3, nieuwste eerst)
+//   mensen          → teamgrid    (collectie Team, records.teamleden, CMS-volgorde)
 //   cta (+formulier)→ contact     (Afsluitende oproep + Formulier soort contact)
 // Onbekende bloktypen worden veilig overgeslagen (de pagina breekt nooit).
 
@@ -153,6 +154,7 @@ function sectieHero(c, index) {
     // USP's van het Header-blok = de wisselende laatste regel (klantvoordelen). Leeg → dienstnamen.
     usps: lijst(c.usps).map((u) => rotatieLabel(obj(u).tekst)).filter(Boolean).slice(0, 6),
     focus: { x: getal(c.focal_x, 50), y: getal(c.focal_y, 47) },
+    compact: c.hoogte === 'compact' || c.layout === 'compact' || !(c.media_type === 'afbeelding' || (!c.media_type && c.media_afbeelding)),
   }
 }
 
@@ -219,6 +221,33 @@ function sectieArtikelen(c, artikelen) {
     titelRegels: splitZinnen(c.titel),
     titel: tekst(c.titel, 200),
     artikelen: lijstArt,
+  }
+}
+
+function normaliseerTeamlid(r) {
+  const t = obj(r)
+  const naam = tekst(t.naam, 120)
+  if (!naam) return null
+  return {
+    id: tekst(t.id, 64),
+    naam,
+    functie: tekst(t.functie, 120),
+    tekst: tekst(t.tekst, 1200),
+    foto: veiligeAfbeelding(t.foto),
+    fotoAlt: tekst(t.foto_alt, 200),
+    linkedin: veiligeHref(t.linkedin)?.startsWith('https://') ? veiligeHref(t.linkedin) : null,
+  }
+}
+
+// Team (kernblok `mensen`): gepubliceerde records uit de collectie Team, in CMS-volgorde.
+function sectieTeamGrid(c, teamleden) {
+  const max = Math.max(1, Math.min(24, getal(c.maximaal, 0) || 24))
+  return {
+    soort: 'teamgrid',
+    titelRegels: splitZinnen(c.titel),
+    titel: tekst(c.titel, 200),
+    intro: tekst(c.intro, 800),
+    leden: teamleden.slice(0, max),
   }
 }
 
@@ -301,6 +330,7 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
   const paginas = lijst(data.paginas).map(obj)
   const p = paginas.find((x) => x.slug === slug) ?? null
   const artikelen = normaliseerArtikelen(data.records)
+  const teamleden = lijst(obj(data.records).teamleden).map(normaliseerTeamlid).filter(Boolean)
 
   const secties = []
   let heroTeller = 0
@@ -318,6 +348,9 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
           break
         case 'mediatekst':
           secties.push(sectieTeam(c))
+          break
+        case 'mensen':
+          secties.push(sectieTeamGrid(c, teamleden))
           break
         case 'artikelen_grid':
           secties.push(sectieArtikelen(c, artikelen))
@@ -359,4 +392,11 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
     artikelen,
     waarschuwingen,
   }
+}
+
+// Slugs van alle gepubliceerde pagina's (de homepage '/' plus subpagina's zoals '/team').
+export function paginaSlugs(rauw) {
+  return lijst(obj(rauw).paginas)
+    .map((p) => obj(p).slug)
+    .filter((sl) => typeof sl === 'string' && /^\/(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*)?$/.test(sl))
 }

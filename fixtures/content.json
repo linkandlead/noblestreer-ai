@@ -274,6 +274,48 @@
           }
         }
       ]
+    },
+    {
+      "slug": "/team",
+      "titel": "Ons team | Noblestreet AI",
+      "beschrijving": "Maak kennis met het team van Noblestreet AI.",
+      "og_beeld": null,
+      "blokken": [
+        {
+          "type": "header",
+          "bg": "nacht",
+          "content": {
+            "layout": "compact",
+            "hoogte": "compact",
+            "eyebrow": "Over Noblestreet AI",
+            "heading": "Ons team. Persoonlijk betrokken.",
+            "subheading": "Een vast team van AI- en softwarespecialisten.",
+            "media_type": "geen",
+            "usps": []
+          }
+        },
+        {
+          "type": "mensen",
+          "bg": "diep",
+          "content": {
+            "titel": "Maak kennis met het team.",
+            "intro": "Dit zijn de mensen met wie je werkt.",
+            "maximaal": 12
+          }
+        },
+        {
+          "type": "cta",
+          "bg": "diep",
+          "content": {
+            "eyebrow": "Contact",
+            "titel": "Kennismaken?",
+            "tekst": "Vertel ons waar je staat met AI.",
+            "knoptekst": "Plan een gesprek",
+            "knop": "/#contact-formulier",
+            "meta": []
+          }
+        }
+      ]
     }
   ],
   "popups": [],
@@ -315,6 +357,56 @@
         "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-niet-alleen-mwi6rzac-qgh88u.webp",
         "gepubliceerd_op": "2026-10-28",
         "auteur": null
+      }
+    ],
+    "teamleden": [
+      {
+        "id": "fixture-team-1",
+        "naam": "Teamlid 1",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
+      },
+      {
+        "id": "fixture-team-2",
+        "naam": "Teamlid 2",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
+      },
+      {
+        "id": "fixture-team-3",
+        "naam": "Teamlid 3",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
+      },
+      {
+        "id": "fixture-team-4",
+        "naam": "Teamlid 4",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
+      },
+      {
+        "id": "fixture-team-5",
+        "naam": "Teamlid 5",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
+      },
+      {
+        "id": "fixture-team-6",
+        "naam": "Teamlid 6",
+        "functie": "Functie volgt",
+        "tekst": "Plaatshouder.",
+        "foto": null,
+        "linkedin": null
       }
     ]
   }

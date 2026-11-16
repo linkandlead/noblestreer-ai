@@ -197,3 +197,22 @@ test("hero-USP's gaan vóór dienstnamen als wisseltermen; leeg → dienstnamen"
   blok(d, 'header').content.usps = []
   assert.equal(normaliseer(d).rotatie[0], 'AI Workspace.')
 })
+
+test('teampagina: compacte hero, 6 teamleden met initialen, geen verzonnen foto', () => {
+  const m = normaliseer(fixture, { slug: '/team' })
+  assert.deepEqual(m.secties.map((s) => s.soort), ['hero', 'teamgrid', 'contact'])
+  assert.equal(m.secties[0].compact, true)
+  const html = homeHtml({ ...ctxVoor(m), isHome: false })
+  assert.equal((html.match(/class="team-member"/g) ?? []).length, 6)
+  assert.equal((html.match(/team-member-photo--leeg/g) ?? []).length, 6)
+  assert.match(html, /<link rel="canonical" href="https:\/\/[^"]+\/team\/">/)
+  assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1)
+})
+
+test('teampagina zonder gepubliceerde leden → nette lege stand', () => {
+  const d = kopie()
+  d.records.teamleden = []
+  const html = homeHtml({ ...ctxVoor(normaliseer(d, { slug: '/team' })), isHome: false })
+  assert.ok(html.includes('class="empty-state"'))
+  assert.ok(!html.includes('team-member'))
+})

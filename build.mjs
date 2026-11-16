@@ -13,7 +13,7 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { haalContent, CmsFout } from './src/lib/cms/client.mjs'
-import { normaliseer } from './src/lib/cms/normalize.mjs'
+import { normaliseer, paginaSlugs } from './src/lib/cms/normalize.mjs'
 import { artikelHtml, homeHtml, nietGevondenHtml, onderhoudHtml } from './src/render/page.mjs'
 
 laadEnv('.env')
@@ -83,6 +83,25 @@ if (model.pagina && model.secties.length) {
 
 const subCtx = { ...ctx, isHome: false, heeftFormulier: false }
 const paden = ['/']
+
+// Overige gepubliceerde CMS-pagina's (bv. /team) — elk met eigen secties uit haar blokken.
+for (const slug of paginaSlugs(rauw).filter((sl) => sl !== '/')) {
+  const sub = normaliseer(rauw, { slug })
+  for (const w of sub.waarschuwingen) console.warn(`! [${slug}] ${w}`)
+  if (!sub.pagina || !sub.secties.length) continue
+  const subContact = sub.secties.find((s) => s.soort === 'contact')
+  const pctx = {
+    ...ctx,
+    model: sub,
+    rotatie: sub.rotatie,
+    isHome: false,
+    heeftFormulier: Boolean(subContact?.formulier),
+    contactLink: subContact?.cta?.cta ?? ctx.contactLink,
+  }
+  mkdirSync(`${UIT}${slug}`, { recursive: true })
+  writeFileSync(`${UIT}${slug}/index.html`, homeHtml(pctx))
+  paden.push(`${slug}/`)
+}
 for (const a of model.artikelen) {
   mkdirSync(`${UIT}/inzichten/${a.slug}`, { recursive: true })
   writeFileSync(`${UIT}/inzichten/${a.slug}/index.html`, artikelHtml(subCtx, a))
@@ -105,7 +124,7 @@ if (basis) {
 writeFileSync(`${UIT}/content.json`, JSON.stringify({ bron: FIXTURE ? 'fixture' : 'cms', opgehaald: new Date().toISOString(), model }, null, 2))
 
 console.log(
-  `✓ ${FIXTURE ? 'FIXTURE' : 'CMS'}: "${model.site.naam}" — ${model.secties.length} secties, ${model.artikelen.length} gepubliceerde artikel(en) → ${UIT}/`,
+  `✓ ${FIXTURE ? 'FIXTURE' : 'CMS'}: "${model.site.naam}" — ${model.secties.length} secties, ${paden.length - model.artikelen.length} pagina('s), ${model.artikelen.length} gepubliceerde artikel(en) → ${UIT}/`,
 )
 
 // Focuspunt van de hero (CMS-velden focal_x/focal_y) als CSS-variabele — geen inline styles (CSP).

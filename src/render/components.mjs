@@ -41,7 +41,7 @@ export function Hero(ctx, s) {
   const Kop = s.niveau === 1 ? 'h1' : 'h2'
   const rotatie = s.niveau === 1 ? ctx.rotatie : []
   const regels = s.kopRegels
-  return html`<section class="hero" aria-label="Introductie">
+  return html`<section class="hero${s.compact ? ' hero--compact' : ''}" aria-label="Introductie">
     ${s.beeld ? html`<img class="hero-photo" src="${attr(s.beeld)}" alt="${attr(s.beeldAlt)}" fetchpriority="high" decoding="async">` : ''}
     <div class="hero-content">
       ${s.eyebrow ? html`<p class="eyebrow">${esc(s.eyebrow)}</p>` : ''}
@@ -91,6 +91,33 @@ export function TeamBanner(ctx, s) {
       <h2 id="team-heading" data-reveal>${s.titelRegels.map((r, i) => html`${i ? '<br>' : ''}${esc(r)}`)}</h2>
       <div class="team-side" data-reveal>${s.alineas.map((a) => html`<p>${esc(a)}</p>`)}${s.punten.length ? html`<ul class="team-points">${s.punten.map((p) => html`<li>${esc(p)}</li>`)}</ul>` : ''}${tekstLink(ctx, s.cta)}</div>
     </div>
+  </section>`
+}
+
+function initialen(naam) {
+  return naam.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase()
+}
+
+// Team (collectie Team). Zonder foto: een kader met initialen — nooit een verzonnen portret.
+export function TeamGrid(ctx, s) {
+  return html`<section id="team" class="section-pad teamgrid" aria-labelledby="teamgrid-heading">
+    <div class="section-heading" data-reveal>
+      <h2 id="teamgrid-heading">${s.titelRegels.length ? s.titelRegels.map((r, i) => html`${i ? '<br>' : ''}${esc(r)}`) : 'Team'}</h2>
+      ${s.intro ? html`<div class="services-head-right"><p>${esc(s.intro)}</p></div>` : ''}
+    </div>
+    ${
+      s.leden.length
+        ? html`<ul class="team-grid" role="list">${s.leden.map(
+            (l) => html`<li class="team-member" data-reveal>
+              ${l.foto ? html`<img class="team-member-photo" src="${attr(l.foto)}" alt="${attr(l.fotoAlt || l.naam)}" loading="lazy" decoding="async">` : html`<span class="team-member-photo team-member-photo--leeg" aria-hidden="true">${esc(initialen(l.naam))}</span>`}
+              ${l.functie ? html`<p class="team-member-role">${esc(l.functie)}</p>` : ''}
+              <h3>${esc(l.naam)}</h3>
+              ${l.tekst ? html`<p class="team-member-text">${esc(l.tekst)}</p>` : ''}
+              ${l.linkedin ? html`<a class="text-link team-member-link"${linkAttrs(l.linkedin)}>LinkedIn ${PIJL}</a>` : ''}
+            </li>`,
+          )}</ul>`
+        : html`<p class="empty-state" data-reveal>Het team wordt binnenkort voorgesteld.</p>`
+    }
   </section>`
 }
 
@@ -191,5 +218,6 @@ export const SECTIES = {
   diensten: ServiceGrid,
   team: TeamBanner,
   artikelen: ArticleGrid,
+  teamgrid: TeamGrid,
   contact: Contact,
 }
