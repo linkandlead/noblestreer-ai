@@ -154,7 +154,7 @@
     {
       "slug": "/",
       "titel": "Noblestreet AI | Bouw zelf met AI. Met technische zekerheid.",
-      "beschrijving": "Noblestreet AI helpt bedrijven zelfstandig software bouwen met AI. Van Claude Code-werkomgevingen tot technische controles en veilige livegang.",
+      "beschrijving": "Noblestreet AI zet je AI-workflow professioneel op, ondersteunt je team en houdt alles veilig en werkend. En we bouwen AI-producten op maat.",
       "og_beeld": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/hero-werkplek-mwi6rtt3-qy57eg.webp",
       "blokken": [
         {
@@ -186,7 +186,7 @@
               {
                 "link": "#contact",
                 "icoon": "geen",
-                "tekst": "Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- Claude Code professioneel instellen\n- GitHub en versiebeheer\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht",
+                "tekst": "Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- AI-ontwikkeltools professioneel instellen\n- Versiebeheer en samenwerking\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht",
                 "titel": "AI Workspace"
               },
               {
@@ -282,8 +282,8 @@
     "artikelen": [
       {
         "id": "fixture-1",
-        "slug": "professioneel-met-claude-code-werken",
-        "titel": "Wat heb je nodig om professioneel met Claude Code te werken?",
+        "slug": "professioneel-ontwikkelen-met-ai",
+        "titel": "Wat heb je nodig om professioneel met AI te ontwikkelen?",
         "rubriek": "Praktijk",
         "antwoordblok": null,
         "samenvatting": "Een AI-tool installeren is pas het begin. Deze onderdelen maken het verschil tussen experimenteren en betrouwbaar ontwikkelen.",

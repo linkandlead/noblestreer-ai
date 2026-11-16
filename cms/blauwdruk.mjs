@@ -111,7 +111,7 @@ export default {
                 icoon: 'geen',
                 titel: 'AI Workspace',
                 tekst:
-                  'Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- Claude Code professioneel instellen\n- GitHub en versiebeheer\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht',
+                  'Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen.\n- AI-ontwikkeltools professioneel instellen\n- Versiebeheer en samenwerking\n- Rechten en veilige AI-instructies\n- Tests en werkafspraken\n- Training en overdracht',
                 link: '#contact',
               },
               {

@@ -167,7 +167,7 @@ test('SEO-basis: één h1, title, description, canonical, noindex op staging', (
   const html = homeHtml(ctxVoor(m))
   assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1)
   assert.match(html, /<title>Noblestreet AI \| Bouw zelf met AI\. Met technische zekerheid\.<\/title>/)
-  assert.match(html, /<meta name="description" content="Noblestreet AI helpt bedrijven/)
+  assert.match(html, /<meta name="description" content="Noblestreet AI zet je AI-workflow professioneel op/)
   assert.match(html, /<link rel="canonical" href="https:\/\/noblestreet-ai\.vercel\.app\/">/)
   assert.match(html, /<meta name="robots" content="noindex, nofollow">/)
   assert.ok(html.includes('<html lang="nl">'))
