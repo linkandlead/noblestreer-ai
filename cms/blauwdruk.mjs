@@ -161,8 +161,8 @@ export default {
               },
             ],
             punten: [],
-            // Duotoon in de merkkleuren; bestand staat in public/img van de site.
-            beeld: '/img/over-ons-trap.webp',
+            // Duotoon in de merkkleuren (mediabibliotheek).
+            beeld: `${MEDIA}/over-ons-trap-mwj0126w-wmv8jb.webp`,
             beeld_alt: 'Iemand loopt een gebogen betonnen trap op, met schaduwen van takken in het daglicht',
             beeldzijde: 'rechts',
             knop: '/team/',

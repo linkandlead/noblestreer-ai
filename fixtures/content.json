@@ -218,7 +218,7 @@
           "bg": "nacht",
           "content": {
             "knop": "#contact",
-            "beeld": "/img/over-ons-trap.webp",
+            "beeld": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/over-ons-trap-mwj0126w-wmv8jb.webp",
             "titel": "Persoonlijk in contact. Professioneel in techniek.",
             "punten": [],
             "alineas": [
