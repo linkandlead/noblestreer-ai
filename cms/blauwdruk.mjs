@@ -31,8 +31,8 @@ export default {
   // Site > Navigatie en instellingen (opslagformaat sites.config.merk).
   merk: {
     naam: 'Noblestreet AI',
-    tagline: 'Zelf bouwen met AI. Met de zekerheid van technische expertise.',
-    slogan: 'De vrijheid om zelf te bouwen',
+    tagline: 'Hulp bij het opzetten, beveiligen en onderhouden van je AI-workflow. En AI-producten op maat.',
+    slogan: 'AI in je bedrijf, goed geregeld',
     // Bewust GEEN e-mail/telefoon/adres: die zijn (nog) niet gevalideerd aangeleverd.
     contact: { bedrijf: 'Noblestreet AI', reactietijd: 'Op afspraak' },
     hoofd_nav: [
@@ -59,7 +59,7 @@ export default {
   paginas: [
     {
       slug: '/',
-      titel: 'Noblestreet AI | Bouw zelf met AI. Met technische zekerheid.',
+      titel: 'Noblestreet AI | AI in je bedrijf, goed geregeld',
       beschrijving:
         'Noblestreet AI zet je AI-workflow professioneel op, ondersteunt je team en houdt alles veilig en werkend. En we bouwen AI-producten op maat.',
       og_beeld: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
