@@ -12,11 +12,11 @@ Datum: 15 november 2026 · Branch: `claude/eloquent-noether-o78esu`
 | Deploy Hook "Link & Lead One publiceren" → `sites.config.deploy_hook` | **Klaar** — publiceren in One Studio bouwt de site opnieuw |
 | Volledige keten getest: CMS-wijziging → Deploy Hook → Vercel-build → zichtbaar online | **Geslaagd** (15-11-2026, zie test 11) |
 | Formulier → CMS-leadflow | **Klaar** (bestaande lead-SDK, sitedomein = staging-URL); meldingsadres nog te configureren |
-| Livegang op productie-URL / eigen domein | **Wacht op beheerder** — zie "Wat nog nodig is" |
+| Productie (`main`) + Deploy Hook voor `main` | **Klaar** — eigen domein nog te koppelen |
 
-**Staging-URL (vast, wordt bij elke publicatie bijgewerkt):**
-`https://noblestreer-ai-git-claude-eloquent-noether-o78esu-link-and-lead.vercel.app/`
-— achter Vercel Authentication (alleen teamleden), `noindex`.
+**Productie-URL (branch `main`, wordt bij elke publicatie bijgewerkt):**
+`https://noblestreer-ai-link-and-lead.vercel.app/` — achter Vercel Authentication (alleen
+teamleden) tot er een eigen domein is, `noindex`.
 
 ## Wat ik in het CMS heb aangemaakt (productie, `mucwwqjctynklovacwbv`)
 
@@ -25,7 +25,7 @@ Alles hangt aan één nieuwe site; andere sites zijn niet aangeraakt.
 | Record | Waarde |
 |---|---|
 | `tenants` | `9cd29c4e-cd2c-4c39-bbfd-b8f66a627cbb` — Noblestreet AI |
-| `sites` | `43419df5-06b4-437a-9632-fd3f242a8364` — Noblestreet AI, domein = staging-URL hierboven (lead-origincontrole), status `in_bouw`, `config.modus = headless`, `config.deploy_hook` gezet, `vercel_project = noblestreer-ai` |
+| `sites` | `43419df5-06b4-437a-9632-fd3f242a8364` — Noblestreet AI, domein `noblestreer-ai-link-and-lead.vercel.app` (lead-origincontrole), status `in_bouw`, `config.modus = headless`, `config.deploy_hook` gezet, `vercel_project = noblestreer-ai` |
 | `gebruikers` | bouw-account `bouw@noblestreer-ai-link-and-lead.vercel.app`, rol `klant`, alleen deze site; inloggen kan niet (willekeurig wachtwoord-hash, net als `maakBouwToken`); alleen de sha256 van het token is opgeslagen |
 | `sites.design_tokens` | 12 kleursleutels → exact `#052824` / `#B1F9E1` (masterprompt §6) |
 | `sites.config.merk` | naam, tagline, slogan, `hoofd_nav` (Home/Diensten/Over ons/Inzichten/Contact), footerkolom, primaire actie, contact (alleen "Op afspraak"; géén verzonnen e-mail/telefoon/adres) |
@@ -106,20 +106,16 @@ geen JS-framework (site.js ≈ 5 kB).
 
 ## Wat nog nodig is (beheerder)
 
-1. **Productiebranch.** Vercel bouwt productie vanaf `main`, en die branch bestaat nog niet. Merge deze
-   branch naar `main` (of zet in Vercel de productiebranch op deze branch). Maak daarna in Vercel een
-   Deploy Hook voor `main` en vervang hem in One Studio › Instellingen › Deploy Hook.
-2. **Domein.** Productie-URL `noblestreer-ai-link-and-lead.vercel.app` of eigen domein koppelen →
-   het domein van de site in One Control op exact dat domein zetten (lead-origincontrole is een exacte
-   match) → `INDEXEREN=ja` in Vercel → redeploy. Vercel Authentication staat op
-   "all_except_custom_domains": de vercel.app-URL's zijn alleen voor teamleden zichtbaar.
-3. **Leadmeldingen**: een `site_mail_instellingen`-rij voor Noblestreet AI (meldingsadres + afzender).
+1. **Eigen domein** koppelen in Vercel → het domein van de site in One Control op exact dat domein
+   zetten (lead-origincontrole is een exacte match) → `INDEXEREN=ja` in Vercel → redeploy. Tot dan
+   is de site alleen zichtbaar voor teamleden (Vercel Authentication op vercel.app-URL's).
+2. **Leadmeldingen**: een `site_mail_instellingen`-rij voor Noblestreet AI (meldingsadres + afzender).
    Zonder die rij komen leads wél in de leadlijst van de site, maar gaan meldingsmails via de
    platform-terugvalafzender.
-4. **Echte gegevens**: contact (e-mail/telefoon/adres) in Merk & branding, privacy-/voorwaardenpagina's
+3. **Echte gegevens**: contact (e-mail/telefoon/adres) in Merk & branding, privacy-/voorwaardenpagina's
    (verschijnen automatisch als juridische links), echte foto's (na toestemming), en artikelen met
    hoofdtekst en publicatiedatum.
-5. **Redacteuraccount** voor Noblestreet in One Control (rol `redacteur`, site Noblestreet AI), zodat
+4. **Redacteuraccount** voor Noblestreet in One Control (rol `redacteur`, site Noblestreet AI), zodat
    iemand van Noblestreet zelf in One Studio kan werken.
-6. Bekende beperking van het CMS-contract: de lees-API levert alleen gepubliceerde content; een
+5. Bekende beperking van het CMS-contract: de lees-API levert alleen gepubliceerde content; een
    **conceptpreview** voor headless sites bestaat (nog) niet. Daarvoor is een CMS-verzoek nodig.

@@ -13,7 +13,7 @@ navigatie, CTA, formulier, SEO, merkkleuren) komt uit **Link & Lead One** en is 
 | Site-modus | `headless` (sites.config.modus), status `in_bouw` |
 | Bouw-account | `bouw@noblestreer-ai-link-and-lead.vercel.app` (token-only, inloggen uitgeschakeld) |
 | Vercel | project `noblestreer-ai` (team Link-and-Lead), Deploy Hook "Link & Lead One publiceren" |
-| Staging-URL | `https://noblestreer-ai-git-claude-eloquent-noether-o78esu-link-and-lead.vercel.app/` (= sitedomein in het CMS) |
+| Productie-URL | `https://noblestreer-ai-link-and-lead.vercel.app/` (= sitedomein in het CMS; branch `main`) |
 
 ## Hoe de koppeling werkt
 
@@ -119,14 +119,16 @@ npm run check:seo -- http://127.0.0.1:4173/   # de view-source-check uit linkand
 
 ## Deployen (Vercel) — staat ingericht
 
-- Project `noblestreer-ai` (team Link-and-Lead) is gekoppeld aan deze repo; build `node build.mjs`,
-  output `dist` (`vercel.json`). Env-vars `CMS_TOKEN` (Sensitive), `SITE_ID`, `CMS_BASE`, `INDEXEREN=nee`
-  zijn gezet.
-- Deploy Hook "Link & Lead One publiceren" (branch `claude/eloquent-noether-o78esu`) staat in
-  `sites.config.deploy_hook`: elke publicatie in One Studio bouwt de site opnieuw.
-- **Naar productie:** merge naar `main` (de productiebranch in Vercel), maak een Deploy Hook voor
-  `main` en zet die in One Studio › Instellingen › Deploy Hook. Koppel het domein, zet het domein van
-  de site in One Control op exact dat domein (lead-origincontrole), zet `INDEXEREN=ja` en redeploy.
+- Project `noblestreer-ai` (team Link-and-Lead) is gekoppeld aan deze repo; productiebranch `main`,
+  build `node build.mjs`, output `dist` (`vercel.json`). Env-vars `CMS_TOKEN` (Sensitive), `SITE_ID`,
+  `CMS_BASE`, `INDEXEREN=nee` zijn gezet.
+- Deploy Hook "Link & Lead One publiceren (productie)" (branch `main`) staat in
+  `sites.config.deploy_hook`: elke publicatie in One Studio bouwt de productiesite opnieuw.
+- Het domein van de site in One Control is `noblestreer-ai-link-and-lead.vercel.app` (de
+  lead-origincontrole is een exacte match).
+- **Eigen domein:** koppel het in Vercel, zet het domein van de site in One Control op exact dat
+  domein, zet `INDEXEREN=ja` en redeploy. Vercel Authentication staat op "all_except_custom_domains":
+  de vercel.app-URL's zijn alleen voor teamleden zichtbaar; een eigen domein is publiek.
 
 Is het CMS bij een build onbereikbaar, dan faalt de build bewust; Vercel laat de vorige deployment
 live (geen lege of verzonnen pagina).
