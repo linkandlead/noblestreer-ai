@@ -10,11 +10,17 @@
 //   X-Frame-Options; bij `ingesloten=1` geen eigen balk (de editor heeft er al een).
 // - Het token gaat in een kortlevend cookie (SameSite=None; Secure; Partitioned), zodat het ook in een
 //   iframe werkt; antwoorden zijn altijd `private, no-store` en `noindex`.
+// - Klikken en typen in het echte ontwerp (B-115, B-127, site-kit 1.21): alleen bij een geldig concept én
+//   `ingesloten=1` krijgt elke sectie `data-cms-sectie="<blok-id>"` en staat voorvertoningKlikken als inline script
+//   onderaan de pagina. De CSP staat precies dat script toe met zijn sha256 (geen 'unsafe-inline'). Berichten gaan
+//   alleen naar de origin van de editor (CMS_BEHEER_URL, standaard https://cms.linkandlead.nl).
 
 import { haalContent } from './lib/cms/client.mjs'
 import { normaliseer, paginaSlugs } from './lib/cms/normalize.mjs'
 import { homeHtml } from './render/page.mjs'
 import { esc } from './render/html.mjs'
+import { klikScript } from './voorvertoningklikken.mjs'
+import { createHash } from 'node:crypto'
 
 export const COOKIE = 'nobl_voorvertoning'
 const MAX_LEEFTIJD = 30 * 60
@@ -31,11 +37,16 @@ export function cmsOrigins(cmsBase) {
   return [...uit]
 }
 
-export function voorvertoningHeaders(cmsBase) {
+// De origin van de editor van het CMS: het enige doel van de berichten van het klikscript.
+export const STANDAARD_EDITOR = 'https://cms.linkandlead.nl'
+
+// scriptHash: de sha256 van het inline klikscript (alleen in het ingesloten voorbeeld), anders geen inline script.
+export function voorvertoningHeaders(cmsBase, { scriptHash = null } = {}) {
   const fa = `frame-ancestors 'self' ${cmsOrigins(cmsBase).join(' ')}`
+  const hash = scriptHash ? ` 'sha256-${scriptHash}'` : ''
   return {
     'content-type': 'text/html; charset=utf-8',
-    'content-security-policy': `default-src 'self'; script-src 'self' https://linkandlead.nl; style-src 'self'; img-src 'self' data: https://mucwwqjctynklovacwbv.supabase.co; font-src 'self'; connect-src 'self' https://linkandlead.nl; form-action 'self'; base-uri 'self'; object-src 'none'; ${fa}`,
+    'content-security-policy': `default-src 'self'; script-src 'self' https://linkandlead.nl${hash}; style-src 'self'; img-src 'self' data: https://mucwwqjctynklovacwbv.supabase.co; font-src 'self'; connect-src 'self' https://linkandlead.nl; form-action 'self'; base-uri 'self'; object-src 'none'; ${fa}`,
     'cache-control': 'private, no-store',
     'x-robots-tag': 'noindex, nofollow',
     'referrer-policy': 'strict-origin-when-cross-origin',
@@ -80,7 +91,7 @@ export function paginaV1NaarContent(site, v1) {
         titel: p.seo?.titel || p.titel,
         beschrijving: p.seo?.beschrijving || p.beschrijving || '',
         og_beeld: p.seo?.social_beeld ?? null,
-        blokken: (p.blokken || []).map((b) => ({ type: b.type, bg: b.bg, content: b.inhoud || {} })),
+        blokken: (p.blokken || []).map((b) => ({ ...(typeof b.id === 'string' ? { id: b.id } : {}), type: b.type, bg: b.bg, content: b.inhoud || {} })),
       },
     ],
     records: p.records || {},
@@ -106,7 +117,7 @@ function maakCtx(model, opties) {
 
 /**
  * @param {Request} request
- * @param {{ cmsBase: string, token?: string, siteId?: string, versie?: string, fetchImpl?: typeof fetch }} env
+ * @param {{ cmsBase: string, token?: string, siteId?: string, versie?: string, editorUrl?: string, fetchImpl?: typeof fetch }} env
  * @returns {Promise<Response>}
  */
 export async function voorvertoning(request, env) {
@@ -136,6 +147,7 @@ export async function voorvertoning(request, env) {
 
   let rauw = gepubliceerd
   let concept = false
+  let conceptBlokken = []
   if (token && gepubliceerd) {
     try {
       const res = await fetchImpl(`${base}/api/v1/pagina?pad=${encodeURIComponent(slug)}&voorvertoning=${encodeURIComponent(token)}`, {
@@ -148,6 +160,7 @@ export async function voorvertoning(request, env) {
           eigen.records = { ...(gepubliceerd.records || {}), ...(eigen.records || {}) }
           rauw = eigen
           concept = true
+          conceptBlokken = Array.isArray(v1.pagina.blokken) ? v1.pagina.blokken : []
         }
       }
     } catch {
@@ -161,16 +174,27 @@ export async function voorvertoning(request, env) {
   }
 
   let model = normaliseer(rauw, { slug })
+  const opPad = Boolean(model.pagina)
   if (!model.pagina && slug !== '/') model = normaliseer(rauw, { slug: '/' })
+  // Klikken en typen: alleen in de editor (ingesloten) en alleen op het concept van deze pagina.
+  const script = concept && link.ingesloten && opPad ? klikScript(env.editorUrl || STANDAARD_EDITOR, conceptBlokken) : ''
   const ctx = maakCtx(model, {
     cmsBase: base,
     siteId: '',
     versie: env.versie || 'vv',
     indexeren: false,
+    klikken: Boolean(script),
   })
   ctx.isHome = model.pagina?.slug === '/'
   ctx.inzichtenPad = paginaSlugs(gepubliceerd ?? rauw).includes('/inzichten') ? '/inzichten/' : null
   let html = homeHtml(ctx)
   if (concept && !link.ingesloten) html = html.replace('<body>', `<body class="met-voorvertoning-balk">\n  ${balk(slug === '/' ? '/' : `${slug}/`)}`)
+  if (script) {
+    const eind = html.lastIndexOf('</body>')
+    const tag = `<script>${script}</script>\n`
+    html = eind >= 0 ? html.slice(0, eind) + tag + html.slice(eind) : html + tag
+    const scriptHash = createHash('sha256').update(script, 'utf8').digest('base64')
+    return new Response(html, { status: 200, headers: voorvertoningHeaders(env.cmsBase, { scriptHash }) })
+  }
   return new Response(html, { status: 200, headers })
 }

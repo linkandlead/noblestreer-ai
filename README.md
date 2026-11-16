@@ -36,6 +36,13 @@ bezoeker ──▶ statische, server-gerenderde HTML (dist/) ──▶ formulier
 4. **Leads** — het contactformulier gebruikt de bestaande lead-SDK (`cms-client.js`, `data-ll-lead`):
    honeypot + tijdmeting, servervalidatie, rate-limit en origincontrole in het CMS.
 5. **Tracking** — `meet.js` (cookieloos, bestaande CMS-koppeling).
+6. **Voorbeeld in de pagina-editor** — `/__voorvertoning` (`src/voorvertoning.mjs`, Vercel-functie
+   `api/voorvertoning.mjs`) toont het concept. Alleen bij een geldig concept én `&ingesloten=1` (het iframe van de
+   editor) krijgt elke sectie `data-cms-sectie="<blok-id>"` en staat `voorvertoningKlikken` uit site-kit 1.21 als
+   inline script onderaan (`src/voorvertoningklikken.mjs`, linkandlead-cms B-115/B-127): een klik kiest het blok,
+   platte tekst is na de selectie direct te typen (Enter: klaar, Escape: terugzetten) en links openen in de editor
+   geen andere pagina. De CSP staat precies dat script toe met zijn sha256 (geen `'unsafe-inline'`); berichten gaan
+   alleen naar `CMS_BEHEER_URL` (standaard `https://cms.linkandlead.nl`). De gewone site verandert niet.
 
 ## CMS-blokkenkaart (alleen bestaande kernblokken — geen nieuw sitebloktype nodig)
 
