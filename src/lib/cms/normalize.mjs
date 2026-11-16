@@ -19,7 +19,9 @@
 
 const MAX_DIENSTEN = 5
 const MAX_PUNTEN = 5
-const MAX_ARTIKELEN = 3
+// Standaard 3 (homepage, 2:1:1-raster); een overzichtspagina mag via 'maximaal' meer tonen.
+const STANDAARD_ARTIKELEN = 3
+const MAX_ARTIKELEN = 60
 
 export function tekst(v, max = 2000) {
   if (typeof v !== 'string') return ''
@@ -213,7 +215,8 @@ function sectieTeam(c) {
 }
 
 function sectieArtikelen(c, artikelen) {
-  const max = Math.min(MAX_ARTIKELEN, Math.max(1, getal(c.maximaal, MAX_ARTIKELEN) || MAX_ARTIKELEN))
+  const gevraagd = typeof c.maximaal === 'number' ? c.maximaal : Number(c.maximaal)
+  const max = Number.isFinite(gevraagd) && gevraagd >= 1 ? Math.min(MAX_ARTIKELEN, Math.round(gevraagd)) : STANDAARD_ARTIKELEN
   const rubriek = tekst(c.filter_rubriek, 40)
   const lijstArt = artikelen.filter((a) => !rubriek || a.rubriek.toLowerCase() === rubriek.toLowerCase()).slice(0, max)
   return {
@@ -222,6 +225,9 @@ function sectieArtikelen(c, artikelen) {
     titelRegels: splitZinnen(c.titel),
     titel: tekst(c.titel, 200),
     artikelen: lijstArt,
+    // Overzicht: meer dan 3 artikelen → gelijk raster met rubriekfilter.
+    overzicht: max > STANDAARD_ARTIKELEN,
+    rubrieken: [...new Set(lijstArt.map((a) => a.rubriek).filter(Boolean))],
   }
 }
 

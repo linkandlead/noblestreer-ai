@@ -94,6 +94,22 @@
       els.forEach(function (el) { el.classList.add('visible') })
     }
 
+    // ---- Rubriekfilter op het overzicht van inzichten ----
+    document.querySelectorAll('.article-filter').forEach(function (groep) {
+      var sectie = groep.closest('section')
+      var cellen = sectie.querySelectorAll('[data-rubriek]')
+      var status = sectie.querySelector('[data-filter-status]')
+      groep.addEventListener('click', function (e) {
+        var knop = e.target.closest('.filter-knop')
+        if (!knop) return
+        var r = knop.getAttribute('data-filter')
+        groep.querySelectorAll('.filter-knop').forEach(function (k) { k.setAttribute('aria-pressed', String(k === knop)) })
+        var n = 0
+        cellen.forEach(function (c) { var toon = !r || c.getAttribute('data-rubriek') === r; c.hidden = !toon; if (toon) { n++; c.querySelectorAll('[data-reveal]').forEach(function (x) { x.classList.add('visible') }) } })
+        if (status) status.textContent = n + (n === 1 ? ' artikel' : ' artikelen') + (r ? ' in ' + r : '')
+      })
+    })
+
     // ---- Formulier: inline validatie (de server valideert opnieuw) ----
     var form = document.getElementById('contact-formulier')
     if (form) {

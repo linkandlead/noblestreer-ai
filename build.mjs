@@ -59,6 +59,8 @@ const ctx = {
   // Secundaire tekstlinks (diensten-voet, artikelkop, footer) gebruiken de knop van de gedeelde
   // Afsluitende oproep; anders de primaire actie uit Site > Navigatie.
   contactLink: contactSectie?.cta?.cta ?? model.site.actie ?? null,
+  // Overzichtspagina met alle artikelen, als die in het CMS gepubliceerd is (pagina /inzichten).
+  inzichtenPad: paginaSlugs(rauw).includes('/inzichten') ? '/inzichten/' : null,
   opties: {
     cmsBase: CMS_BASE,
     // Bij fixture-builds alleen met expliciete E2E_SITE_ID (browsertest van de lead-SDK, endpoint gemockt).

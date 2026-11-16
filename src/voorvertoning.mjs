@@ -12,7 +12,7 @@
 //   iframe werkt; antwoorden zijn altijd `private, no-store` en `noindex`.
 
 import { haalContent } from './lib/cms/client.mjs'
-import { normaliseer } from './lib/cms/normalize.mjs'
+import { normaliseer, paginaSlugs } from './lib/cms/normalize.mjs'
 import { homeHtml } from './render/page.mjs'
 import { esc } from './render/html.mjs'
 
@@ -169,6 +169,7 @@ export async function voorvertoning(request, env) {
     indexeren: false,
   })
   ctx.isHome = model.pagina?.slug === '/'
+  ctx.inzichtenPad = paginaSlugs(gepubliceerd ?? rauw).includes('/inzichten') ? '/inzichten/' : null
   let html = homeHtml(ctx)
   if (concept && !link.ingesloten) html = html.replace('<body>', `<body class="met-voorvertoning-balk">\n  ${balk(slug === '/' ? '/' : `${slug}/`)}`)
   return new Response(html, { status: 200, headers })

@@ -103,7 +103,7 @@ export function artikelHtml(ctx, a) {
   const contact = ctx.contactLink
   const body = html`<article class="article-page" aria-labelledby="artikel-titel">
     <header class="article-head">
-      <a class="text-link back-link" href="/#inzichten"><span class="arrow" aria-hidden="true">←</span> Alle inzichten</a>
+      <a class="text-link back-link" href="${attr(ctx.inzichtenPad || '/#inzichten')}"><span class="arrow" aria-hidden="true">←</span> Alle inzichten</a>
       ${ArtikelMeta(a, lt ? [esc(lt)] : [])}
       <h1 id="artikel-titel">${esc(a.titel)}</h1>
       ${a.samenvatting ? html`<p class="article-lead">${esc(a.samenvatting)}</p>` : ''}
@@ -137,7 +137,7 @@ export function artikelHtml(ctx, a) {
   ${
     meer.length
       ? html`<section class="articles article-more-section" aria-labelledby="lees-verder-kop">
-    <div class="section-heading"><h2 id="lees-verder-kop">Lees verder.</h2><a class="text-link" href="/#inzichten">Alle inzichten <span class="arrow" aria-hidden="true">↗</span></a></div>
+    <div class="section-heading"><h2 id="lees-verder-kop">Lees verder.</h2><a class="text-link" href="${attr(ctx.inzichtenPad || '/#inzichten')}">Alle inzichten <span class="arrow" aria-hidden="true">↗</span></a></div>
     <div class="articles-grid articles-grid--gelijk">${meer.map((x) => ArtikelKaart(x))}</div>
   </section>`
       : ''

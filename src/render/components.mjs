@@ -154,15 +154,25 @@ export function ArtikelMeta(a, extra = []) {
 }
 
 export function ArticleGrid(ctx, s) {
-  return html`<section id="inzichten" class="articles" aria-labelledby="articles-heading">
+  // Kop-link: op de homepage naar het overzicht (als die pagina bestaat), op het overzicht naar contact.
+  const naarOverzicht = ctx.inzichtenPad && !s.overzicht ? { label: 'Alle inzichten', href: ctx.inzichtenPad } : null
+  const filter = s.overzicht && s.rubrieken.length > 1
+  return html`<section id="inzichten" class="articles${s.overzicht ? ' articles--overzicht' : ''}" aria-labelledby="articles-heading">
     <div class="section-heading" data-reveal>
       <div>${s.eyebrow ? html`<p class="eyebrow section-eyebrow">${esc(s.eyebrow)}</p>` : ''}<h2 id="articles-heading">${s.titelRegels.length ? s.titelRegels.map((r, i) => html`${i ? '<br>' : ''}${esc(r)}`) : 'Inzichten'}</h2></div>
-      ${tekstLink(ctx, ctx.contactLink)}
+      ${tekstLink(ctx, naarOverzicht ?? ctx.contactLink)}
     </div>
     ${
+      filter
+        ? html`<div class="article-filter js-only" role="group" aria-label="Filter op rubriek"><button type="button" class="filter-knop" data-filter="" aria-pressed="true">Alle <span class="filter-aantal">${s.artikelen.length}</span></button>${s.rubrieken.map(
+            (r) => html`<button type="button" class="filter-knop" data-filter="${attr(r)}" aria-pressed="false">${esc(r)} <span class="filter-aantal">${s.artikelen.filter((a) => a.rubriek === r).length}</span></button>`,
+          )}</div><p class="visually-hidden" aria-live="polite" data-filter-status></p>`
+        : ''
+    }
+    ${
       s.artikelen.length
-        ? html`<div class="articles-grid count-${s.artikelen.length}">${s.artikelen.map(
-            (a, i) => ArtikelKaart(a, { eager: i === 0 }),
+        ? html`<div class="articles-grid ${s.overzicht ? 'articles-grid--gelijk' : `count-${s.artikelen.length}`}" data-artikelen>${s.artikelen.map(
+            (a, i) => html`<div class="article-cel" data-rubriek="${attr(a.rubriek)}">${ArtikelKaart(a, { eager: i === 0 })}</div>`,
           )}</div>`
         : html`<p class="empty-state" data-reveal>Er zijn nog geen inzichten gepubliceerd. Nieuwe artikelen verschijnen hier zodra ze live staan.</p>`
     }

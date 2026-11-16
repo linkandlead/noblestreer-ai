@@ -437,6 +437,48 @@
           }
         }
       ]
+    },
+    {
+      "slug": "/inzichten",
+      "titel": "Inzichten | Noblestreet AI",
+      "beschrijving": "Alle artikelen van Noblestreet AI.",
+      "og_beeld": null,
+      "blokken": [
+        {
+          "type": "header",
+          "bg": "nacht",
+          "content": {
+            "layout": "compact",
+            "hoogte": "compact",
+            "eyebrow": "Inzichten",
+            "heading": "Nieuwe inzichten. Heldere antwoorden.",
+            "subheading": "Praktische artikelen over werken met AI.",
+            "media_type": "geen",
+            "usps": []
+          }
+        },
+        {
+          "type": "artikelen_grid",
+          "bg": "diep",
+          "content": {
+            "eyebrow": "",
+            "titel": "Alle artikelen.",
+            "maximaal": 60
+          }
+        },
+        {
+          "type": "cta",
+          "bg": "diep",
+          "content": {
+            "eyebrow": "Contact",
+            "titel": "Een vraag die hier niet staat?",
+            "tekst": "We denken graag mee.",
+            "knoptekst": "Plan een gesprek",
+            "knop": "/#contact-formulier",
+            "meta": []
+          }
+        }
+      ]
     }
   ],
   "popups": [],
@@ -477,6 +519,42 @@
         "hoofdtekst": "Testtekst.",
         "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-niet-alleen-mwi6rzac-qgh88u.webp",
         "gepubliceerd_op": "2026-10-28",
+        "auteur": null
+      },
+      {
+        "id": "fixture-extra-0",
+        "slug": "testartikel-extra-1",
+        "titel": "Testartikel extra 1",
+        "rubriek": "Praktijk",
+        "antwoordblok": null,
+        "samenvatting": "Een AI-tool installeren is pas het begin. Deze onderdelen maken het verschil tussen experimenteren en betrouwbaar ontwikkelen.",
+        "hoofdtekst": "Testtekst voor de artikelroute.\n\n## Tussenkop\n\nTweede alinea met <script>alert(1)</script> als XSS-test.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-claude-code-mwi6rx3t-j7jscg.webp",
+        "gepubliceerd_op": "2026-09-10",
+        "auteur": null
+      },
+      {
+        "id": "fixture-extra-1",
+        "slug": "testartikel-extra-2",
+        "titel": "Testartikel extra 2",
+        "rubriek": "Kwaliteit",
+        "antwoordblok": null,
+        "samenvatting": "Vijf vragen die je moet stellen voordat je zelfgebouwde software live zet.",
+        "hoofdtekst": "Testtekst.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-klaar-voor-klanten-mwi6ryca-zyrg9m.webp",
+        "gepubliceerd_op": "2026-09-01",
+        "auteur": null
+      },
+      {
+        "id": "fixture-extra-2",
+        "slug": "testartikel-extra-3",
+        "titel": "Testartikel extra 3",
+        "rubriek": "Visie",
+        "antwoordblok": null,
+        "samenvatting": "Hoe AI de rol van softwareontwikkelaars verandert — en waarom technische expertise belangrijk blijft.",
+        "hoofdtekst": "Testtekst.",
+        "foto": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/artikel-niet-alleen-mwi6rzac-qgh88u.webp",
+        "gepubliceerd_op": "2026-08-20",
         "auteur": null
       }
     ],

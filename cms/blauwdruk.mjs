@@ -40,7 +40,7 @@ export default {
       { titel: 'Diensten', href: '/#diensten' },
       { titel: 'Over ons', href: '/#over-ons' },
       { titel: 'Team', href: '/team/' },
-      { titel: 'Inzichten', href: '/#inzichten' },
+      { titel: 'Inzichten', href: '/inzichten/' },
       { titel: 'Contact', href: '/#contact' },
     ],
     footer_kolommen: [
@@ -50,7 +50,7 @@ export default {
           { titel: 'Onze diensten', href: '/#diensten' },
           { titel: 'Over Noblestreet AI', href: '/#over-ons' },
           { titel: 'Ons team', href: '/team/' },
-          { titel: 'Inzichten', href: '/#inzichten' },
+          { titel: 'Inzichten', href: '/inzichten/' },
           { titel: 'Contact', href: '/#contact' },
         ],
       },
@@ -276,6 +276,45 @@ export default {
             eyebrow: 'Contact',
             titel: 'Kennismaken?',
             tekst: 'Vertel ons waar je staat met AI. We plannen graag een gesprek met het team.',
+            knoptekst: 'Plan een gesprek',
+            knop: '/#contact-formulier',
+            meta: [{ tekst: 'Op afspraak' }, { tekst: 'Vaste contactpersoon in het team' }],
+          },
+        },
+      ],
+    },
+    {
+      slug: '/inzichten',
+      titel: 'Inzichten | Noblestreet AI',
+      beschrijving:
+        'Praktische artikelen over werken met AI: van een goede werkomgeving en veilige apps tot support, kosten en de keuze tussen zelf bouwen of laten bouwen.',
+      published: true,
+      page_type: 'landing',
+      conversion_goal: 'contact',
+      blokken: [
+        {
+          type: 'header',
+          bg: 'nacht',
+          content: {
+            layout: 'compact',
+            hoogte: 'compact',
+            eyebrow: 'Inzichten',
+            heading: 'Nieuwe inzichten. Heldere antwoorden.',
+            subheading: 'Praktische artikelen over werken met AI: hoe je het goed opzet, veilig houdt en laat blijven werken.',
+            media_type: 'geen',
+            extras: 'geen',
+            usps: [],
+          },
+        },
+        // maximaal > 3 = overzicht: gelijk raster met rubriekfilter.
+        { type: 'artikelen_grid', bg: 'diep', content: { eyebrow: '', titel: 'Alle artikelen.', maximaal: 60 } },
+        {
+          type: 'cta',
+          bg: 'diep',
+          content: {
+            eyebrow: 'Contact',
+            titel: 'Een vraag die hier niet staat?',
+            tekst: 'Vertel ons waar je staat met AI. We denken graag met je mee.',
             knoptekst: 'Plan een gesprek',
             knop: '/#contact-formulier',
             meta: [{ tekst: 'Op afspraak' }, { tekst: 'Vaste contactpersoon in het team' }],
