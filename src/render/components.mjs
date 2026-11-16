@@ -121,6 +121,20 @@ export function TeamGrid(ctx, s) {
   </section>`
 }
 
+// Logostrook: doorlopende band. De lijst staat twee keer in de HTML (tweede kopie aria-hidden) zodat de
+// band naadloos doorloopt; bij reduced motion of zonder JS staat hij stil en loopt hij over meerdere regels.
+export function LogoStrip(ctx, s) {
+  if (!s.items.length) return ''
+  const lijstHtml = (verborgen) =>
+    html`<ul class="logo-list" role="list"${verborgen ? ' aria-hidden="true"' : ''}>${s.items.map(
+      (i) => html`<li>${i.link ? html`<a${linkAttrs(i.link)}${verborgen ? ' tabindex="-1"' : ''}>` : ''}<img src="${attr(i.logo)}" alt="${verborgen ? '' : attr(i.alt)}" height="28" loading="lazy" decoding="async">${i.link ? '</a>' : ''}</li>`,
+    )}</ul>`
+  return html`<section class="logostrip${s.grijs ? ' logostrip--grijs' : ''}" aria-label="${attr(s.titel || s.eyebrow || 'Logo\'s')}">
+    ${s.eyebrow || s.titel ? html`<div class="logostrip-head">${s.eyebrow ? html`<p class="eyebrow">${esc(s.eyebrow)}</p>` : ''}${s.titel ? html`<h2 class="logostrip-title">${esc(s.titel)}</h2>` : ''}</div>` : ''}
+    <div class="logo-track"><div class="logo-rail">${lijstHtml(false)}${lijstHtml(true)}</div></div>
+  </section>`
+}
+
 export function ArticleGrid(ctx, s) {
   return html`<section id="inzichten" class="articles" aria-labelledby="articles-heading">
     <div class="section-heading" data-reveal>
@@ -219,5 +233,6 @@ export const SECTIES = {
   team: TeamBanner,
   artikelen: ArticleGrid,
   teamgrid: TeamGrid,
+  logos: LogoStrip,
   contact: Contact,
 }

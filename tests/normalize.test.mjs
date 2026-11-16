@@ -64,9 +64,9 @@ test('datums in nl-NL, zonder datum geen verzonnen datum', () => {
   assert.equal(formatteerMaand('gisteren'), '')
 })
 
-test('volledige fixture → vijf secties in CMS-volgorde, wisseltermen uit de diensten', () => {
+test('volledige fixture → zes secties in CMS-volgorde, wisseltermen uit de diensten', () => {
   const m = normaliseer(fixture)
-  assert.deepEqual(m.secties.map((s) => s.soort), ['hero', 'diensten', 'team', 'artikelen', 'contact'])
+  assert.deepEqual(m.secties.map((s) => s.soort), ['hero', 'diensten', 'logos', 'team', 'artikelen', 'contact'])
   assert.deepEqual(m.rotatie, ['AI Workspace.', 'AI Launch Check.', 'AI Guidance.', 'AI Support.'])
   const d = m.secties[1]
   assert.equal(d.items.length, 4)
@@ -103,7 +103,7 @@ test('blokken herschikken → secties volgen de CMS-volgorde', () => {
   const i = b.findIndex((x) => x.type === 'artikelen_grid')
   const [art] = b.splice(i, 1)
   b.splice(1, 0, art)
-  assert.deepEqual(normaliseer(d).secties.map((s) => s.soort), ['hero', 'artikelen', 'diensten', 'team', 'contact'])
+  assert.deepEqual(normaliseer(d).secties.map((s) => s.soort), ['hero', 'artikelen', 'diensten', 'logos', 'team', 'contact'])
 })
 
 test('0, 1, 4 en 5 dienstkaarten renderen netjes', () => {
@@ -215,4 +215,18 @@ test('teampagina zonder gepubliceerde leden → nette lege stand', () => {
   const html = homeHtml({ ...ctxVoor(normaliseer(d, { slug: '/team' })), isHome: false })
   assert.ok(html.includes('class="empty-state"'))
   assert.ok(!html.includes('team-member'))
+})
+
+test('logostrook: logo\'s uit het CMS, tweede kopie aria-hidden, onveilige logo\'s eruit', () => {
+  const d = kopie()
+  const lb = blok(d, 'logostrook')
+  lb.content.items.push({ logo: 'javascript:alert(1)', alt: 'Kwaad' }, { logo: 'https://x.nl/a.png', alt: '' })
+  const m = normaliseer(d)
+  const s = m.secties.find((x) => x.soort === 'logos')
+  assert.equal(s.items.length, 22)
+  assert.deepEqual(m.secties.map((x) => x.soort).slice(0, 3), ['hero', 'diensten', 'logos'])
+  const html = homeHtml(ctxVoor(m))
+  assert.equal((html.match(/<ul class="logo-list" role="list" aria-hidden="true">/g) ?? []).length, 1)
+  assert.ok(html.includes('alt="Claude"'))
+  assert.ok(!html.includes('Kwaad'))
 })

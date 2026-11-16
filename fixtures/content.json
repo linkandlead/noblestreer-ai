@@ -214,6 +214,127 @@
           }
         },
         {
+          "type": "logostrook",
+          "bg": "diep",
+          "content": {
+            "eyebrow": "Tools waar we mee werken",
+            "titel": "",
+            "grijs": "nee",
+            "items": [
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-claude-mwj236od-km7jxd.png",
+                "alt": "Claude",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-chatgpt-mwj23ad1-db54ra.png",
+                "alt": "ChatGPT",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-gemini-mwj23dtx-aye113.png",
+                "alt": "Gemini",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-github-mwj23h2n-3difv1.png",
+                "alt": "GitHub",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-copilot-mwj23kmn-mp2u24.png",
+                "alt": "Copilot",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-lovable-mwj23o0l-9555f5.png",
+                "alt": "Lovable",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-cursor-mwj23rhc-313ptd.png",
+                "alt": "Cursor",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-vercel-mwj23usm-kha1w2.png",
+                "alt": "Vercel",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-supabase-mwj23yh3-ayj0r8.png",
+                "alt": "Supabase",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-v0-mwj242dt-ukvnnf.png",
+                "alt": "v0",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-replit-mwj245lv-957igp.png",
+                "alt": "Replit",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-windsurf-mwj248pc-vcz9bm.png",
+                "alt": "Windsurf",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-perplexity-mwj24byh-q3zvnx.png",
+                "alt": "Perplexity",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-mistral-mwj24f5w-t8dnv5.png",
+                "alt": "Mistral AI",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-huggingface-mwj24igv-h2h0qb.png",
+                "alt": "Hugging Face",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-n8n-mwj24lvc-d3rcm3.png",
+                "alt": "n8n",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-langchain-mwj24p1k-xqqqrb.png",
+                "alt": "LangChain",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-ollama-mwj24sf6-r9qlpd.png",
+                "alt": "Ollama",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-nextjs-mwj24vo8-owgukf.png",
+                "alt": "Next.js",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-cloudflare-mwj24z03-lqv077.png",
+                "alt": "Cloudflare",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-docker-mwj252ab-f32mqp.png",
+                "alt": "Docker",
+                "link": ""
+              },
+              {
+                "logo": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/logo-figma-mwj255v0-qkkd4f.png",
+                "alt": "Figma",
+                "link": ""
+              }
+            ]
+          }
+        },
+        {
           "type": "mediatekst",
           "bg": "nacht",
           "content": {

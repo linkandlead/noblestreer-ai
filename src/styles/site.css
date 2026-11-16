@@ -102,6 +102,26 @@ h2 { font-weight: 500; letter-spacing: -.02em; font-size: clamp(42px, 4.2vw, 66p
 }
 .services-foot { display: flex; justify-content: flex-end; margin-top: 40px }
 
+/* Logostrook */
+.logostrip { border-top: 1px solid rgba(177, 249, 225, .26); border-bottom: 1px solid rgba(177, 249, 225, .26); padding: 34px 0; overflow: hidden }
+.logostrip-head { padding: 0 var(--side) 26px; display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap }
+.logostrip-title { font-size: 22px; line-height: 1.2; letter-spacing: -.015em }
+.logo-track { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent) }
+.logo-rail { display: flex; width: max-content }
+.logo-list { display: flex; align-items: center; gap: 64px; padding-right: 64px; list-style: none; margin: 0 }
+.logo-list img { display: block; height: 28px; width: auto; opacity: .88; transition: opacity .2s }
+.logo-list a:hover img, .logo-list a:focus-visible img { opacity: 1 }
+.logostrip--grijs .logo-list img { opacity: .55 }
+.logostrip--grijs .logo-list li:hover img { opacity: 1 }
+html.js .logo-rail { animation: logoband 60s linear infinite }
+.logo-track:hover .logo-rail, .logo-track:focus-within .logo-rail { animation-play-state: paused }
+@keyframes logoband { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+/* Zonder JS of met reduced motion: stilstaand, over meerdere regels, zonder kopie. */
+html:not(.js) .logo-list[aria-hidden], html:not(.js) .logo-track { mask-image: none; -webkit-mask-image: none }
+html:not(.js) .logo-list[aria-hidden] { display: none }
+html:not(.js) .logo-rail { display: block; width: auto }
+html:not(.js) .logo-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); justify-items: center; gap: 26px 24px; padding: 0 var(--side) }
+
 /* Team / over ons */
 .team { height: 760px; min-height: 650px; position: relative; overflow: hidden; isolation: isolate }
 .team-photo { --focus-y: 45% }
@@ -234,6 +254,8 @@ html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
 @media (max-width: 760px) {
   .hero--compact { padding: 140px var(--side) 70px }
   .team-grid { grid-template-columns: 1fr; gap: 50px }
+  .logo-list { gap: 44px; padding-right: 44px }
+  .logo-list img { height: 24px }
   :root { --side: 20px }
   .site-header { padding-top: 21px }
   .wordmark { font-size: 20px }
@@ -291,6 +313,10 @@ html.js [data-reveal].visible { opacity: 1; transform: translateY(0) }
   .section-heading h2, .team h2 { font-size: 44px }
 }
 @media (prefers-reduced-motion: reduce) {
+  html.js .logo-rail { animation: none; display: block; width: auto }
+  .logo-track { mask-image: none; -webkit-mask-image: none }
+  .logo-list[aria-hidden] { display: none }
+  .logo-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); justify-items: center; gap: 26px 24px; padding: 0 var(--side) }
   html { scroll-behavior: auto }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important }
   html.js [data-reveal] { opacity: 1; transform: none }

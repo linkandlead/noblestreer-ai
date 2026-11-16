@@ -10,6 +10,7 @@
 //   kaarten         → diensten    (Kaartenrij; max. 5 kaarten; per kaart: titel, tekst = beschrijving + punten, link)
 //   mediatekst      → team        (Tekst met beeld; full-bleed foto + tekstoverlay)
 //   artikelen_grid  → artikelen   (collectie Artikelen, records.artikelen, max 3, nieuwste eerst)
+//   logostrook      → logos       (Logostrook; logo's uit de mediabibliotheek, doorlopende band)
 //   mensen          → teamgrid    (collectie Team, records.teamleden, CMS-volgorde)
 //   cta (+formulier)→ contact     (Afsluitende oproep + Formulier soort contact)
 // Onbekende bloktypen worden veilig overgeslagen (de pagina breekt nooit).
@@ -251,6 +252,21 @@ function sectieTeamGrid(c, teamleden) {
   }
 }
 
+// Logostrook (kernblok `logostrook`): logo's uit de mediabibliotheek, met naam (alt) en optionele link.
+function sectieLogos(c) {
+  return {
+    soort: 'logos',
+    eyebrow: tekst(c.eyebrow, 140),
+    titel: tekst(c.titel, 200),
+    grijs: c.grijs === 'ja',
+    items: lijst(c.items)
+      .map((i) => obj(i))
+      .map((i) => ({ logo: veiligeAfbeelding(i.logo), alt: tekst(i.alt, 80), link: veiligeHref(i.link) }))
+      .filter((i) => i.logo && i.alt)
+      .slice(0, 40),
+  }
+}
+
 function sectieCta(c) {
   return {
     eyebrow: tekst(c.eyebrow, 140),
@@ -348,6 +364,9 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
           break
         case 'mediatekst':
           secties.push(sectieTeam(c))
+          break
+        case 'logostrook':
+          secties.push(sectieLogos(c))
           break
         case 'mensen':
           secties.push(sectieTeamGrid(c, teamleden))
