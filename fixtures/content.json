@@ -218,7 +218,7 @@
           "bg": "nacht",
           "content": {
             "knop": "#contact",
-            "beeld": "https://mucwwqjctynklovacwbv.supabase.co/storage/v1/object/public/media/43419df5-06b4-437a-9632-fd3f242a8364/team-werksessie-mwi6rvpr-50a1io.webp",
+            "beeld": "/img/over-ons-trap.webp",
             "titel": "Persoonlijk in contact. Professioneel in techniek.",
             "punten": [],
             "alineas": [
@@ -227,7 +227,7 @@
               }
             ],
             "eyebrow": "Beeld ter illustratie",
-            "beeld_alt": "Zakelijke werksessie in warm licht; tijdelijke voorbeeldfoto, geen afbeelding van het werkelijke team",
+            "beeld_alt": "Iemand loopt een gebogen betonnen trap op, met schaduwen van takken in het daglicht",
             "knoptekst": "Maak kennis met ons",
             "beeldzijde": "rechts"
           }

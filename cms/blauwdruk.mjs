@@ -161,8 +161,9 @@ export default {
               },
             ],
             punten: [],
-            beeld: `${MEDIA}/team-werksessie-mwi6rvpr-50a1io.webp`,
-            beeld_alt: 'Zakelijke werksessie in warm licht; tijdelijke voorbeeldfoto, geen afbeelding van het werkelijke team',
+            // Duotoon in de merkkleuren; bestand staat in public/img van de site.
+            beeld: '/img/over-ons-trap.webp',
+            beeld_alt: 'Iemand loopt een gebogen betonnen trap op, met schaduwen van takken in het daglicht',
             beeldzijde: 'rechts',
             knop: '/team/',
             knoptekst: 'Maak kennis met het team',
