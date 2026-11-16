@@ -61,7 +61,7 @@ export default {
       slug: '/',
       titel: 'Noblestreet AI | Bouw zelf met AI. Met technische zekerheid.',
       beschrijving:
-        'Noblestreet AI helpt bedrijven zelfstandig software bouwen met AI. Van Claude Code-werkomgevingen tot technische controles en veilige livegang.',
+        'Noblestreet AI zet je AI-workflow professioneel op, ondersteunt je team en houdt alles veilig en werkend. En we bouwen AI-producten op maat.',
       og_beeld: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
       published: true,
       page_type: 'landing',
@@ -75,11 +75,11 @@ export default {
           content: {
             layout: 'achtergrond',
             hoogte: 'fullscreen',
-            eyebrow: 'Voor ondernemers en teams die zelf software bouwen met AI',
-            heading: 'Zelf bouwen met AI.',
+            eyebrow: 'Opzet, support en beveiliging van je AI-workflow',
+            heading: 'AI in je bedrijf. Goed geregeld.',
             subheading:
-              'Jouw ideeën verdienen een sterke technische basis. Wij helpen je AI-software professioneel te bouwen, controleren en publiceren.',
-            cta_primair_label: 'Ontdek onze expertise',
+              'Wij richten je AI-workflow professioneel in, ondersteunen je team en zorgen dat alles veilig blijft werken. En heb je een idee voor een AI-product? Dan bouwen wij het.',
+            cta_primair_label: 'Bekijk wat we voor je doen',
             cta_primair_link: '#diensten',
             media_type: 'afbeelding',
             media_afbeelding: `${MEDIA}/hero-werkplek-mwi6rtt3-qy57eg.webp`,
@@ -90,10 +90,10 @@ export default {
             extras: 'geen',
             // USP's = de wisselende laatste regel van de kop (klantvoordelen).
             usps: [
-              { tekst: 'Veilig opgezet.' },
-              { tekst: 'Klaar voor je klanten.' },
-              { tekst: 'Met een expert achter je.' },
-              { tekst: 'Zonder technische zorgen.' },
+              { tekst: 'Wij zetten het op.' },
+              { tekst: 'Wij houden het veilig.' },
+              { tekst: 'Wij zorgen dat het blijft werken.' },
+              { tekst: 'Wij bouwen je AI-product.' },
             ],
           },
         },
@@ -103,9 +103,9 @@ export default {
           content: {
             eyebrow: '',
             titel: 'Techniek die je verder brengt.',
-            intro: 'Je bouwt zelf met AI. Wij zorgen voor de kennis, structuur en controles die professioneel werken mogelijk maken.',
+            intro: 'Wij zetten je AI-workflow op, houden hem veilig en werkend, en bouwen AI-producten op maat.',
             kolommen: '4',
-            // Per kaart: eerste regel(s) = korte beschrijving; regels met "- " = de (max. 5) punten.
+            // Per kaart (max. 5 kaarten): eerste regel(s) = korte beschrijving; regels met "- " = de (max. 5) punten.
             items: [
               {
                 icoon: 'geen',
@@ -133,6 +133,13 @@ export default {
                 titel: 'AI Support',
                 tekst:
                   'Technische hulp bij publicatie, beheer en verdere ontwikkeling.\n- Technische verbeteringen\n- Nieuwe versies publiceren\n- Monitoring en back-ups\n- Problemen helpen oplossen\n- Veilig doorontwikkelen',
+                link: '#contact',
+              },
+              {
+                icoon: 'geen',
+                titel: 'AI Development',
+                tekst:
+                  'Wij bouwen AI-producten voor je: van idee tot werkende, veilige applicatie.\n- Idee en productontwerp\n- Prototype en validatie\n- Ontwikkeling met AI\n- Veilige livegang\n- Beheer en doorontwikkeling',
                 link: '#contact',
               },
             ],

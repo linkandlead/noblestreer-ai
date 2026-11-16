@@ -7,7 +7,7 @@
 //
 // Blokmapping (CMS-type → sectie), zie README "CMS-blokkenkaart":
 //   header          → hero        (Header (hero), lay-out "achtergrond", eerste = h1)
-//   kaarten         → diensten    (Kaartenrij; per kaart: titel, tekst = beschrijving + punten, link)
+//   kaarten         → diensten    (Kaartenrij; max. 5 kaarten; per kaart: titel, tekst = beschrijving + punten, link)
 //   mediatekst      → team        (Tekst met beeld; full-bleed foto + tekstoverlay)
 //   artikelen_grid  → artikelen   (collectie Artikelen, records.artikelen, max 3, nieuwste eerst)
 //   cta (+formulier)→ contact     (Afsluitende oproep + Formulier soort contact)
@@ -15,7 +15,7 @@
 
 /** @typedef {{ label: string, href: string }} Link */
 
-const MAX_DIENSTEN = 4
+const MAX_DIENSTEN = 5
 const MAX_PUNTEN = 5
 const MAX_ARTIKELEN = 3
 
@@ -60,6 +60,9 @@ function lijst(v) {
 // "Zelf bouwen met AI." → ["Zelf bouwen", "met AI."]: splits op de woordgrens het dichtst bij het
 // midden (in woorden), zodat de monumentale kop net als in het ontwerp over twee regels loopt.
 export function splitKop(kop) {
+  // Meerdere zinnen ("AI in je bedrijf. Goed geregeld.") → één zin per regel.
+  const zinnen = splitZinnen(kop)
+  if (zinnen.length > 1) return zinnen
   const woorden = tekst(kop, 200).split(/\s+/).filter(Boolean)
   if (woorden.length < 2) return woorden.length ? [woorden[0]] : []
   const midden = Math.ceil(woorden.length / 2)

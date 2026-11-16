@@ -54,6 +54,7 @@ test('kaarttekst: beschrijving + maximaal vijf punten', () => {
 test('kop en zinnen worden zoals het ontwerp over twee regels verdeeld', () => {
   assert.deepEqual(splitKop('Zelf bouwen met AI.'), ['Zelf bouwen', 'met AI.'])
   assert.deepEqual(splitKop('Kort'), ['Kort'])
+  assert.deepEqual(splitKop('AI in je bedrijf. Goed geregeld.'), ['AI in je bedrijf.', 'Goed geregeld.'])
   assert.deepEqual(splitZinnen('Persoonlijk in contact. Professioneel in techniek.'), ['Persoonlijk in contact.', 'Professioneel in techniek.'])
 })
 
@@ -105,10 +106,11 @@ test('blokken herschikken → secties volgen de CMS-volgorde', () => {
   assert.deepEqual(normaliseer(d).secties.map((s) => s.soort), ['hero', 'artikelen', 'diensten', 'team', 'contact'])
 })
 
-test('0, 1 en 4 dienstkaarten renderen netjes', () => {
-  for (const n of [0, 1, 4]) {
+test('0, 1, 4 en 5 dienstkaarten renderen netjes', () => {
+  for (const n of [0, 1, 4, 5]) {
     const d = kopie()
-    blok(d, 'kaarten').content.items = blok(fixture, 'kaarten').content.items.slice(0, n)
+    const bron = blok(fixture, 'kaarten').content.items
+    blok(d, 'kaarten').content.items = [...bron, { ...bron[0], titel: 'AI Development' }].slice(0, n)
     const m = normaliseer(d)
     const html = homeHtml(ctxVoor(m))
     const kaarten = (html.match(/class="service-card"/g) ?? []).length
@@ -118,13 +120,13 @@ test('0, 1 en 4 dienstkaarten renderen netjes', () => {
   }
 })
 
-test('meer dan vier kaarten → maximaal vier + waarschuwing', () => {
+test('meer dan vijf kaarten → maximaal vijf + waarschuwing', () => {
   const d = kopie()
   const items = blok(d, 'kaarten').content.items
-  items.push({ ...items[0], titel: 'Extra' })
+  items.push({ ...items[0], titel: 'Extra 1' }, { ...items[0], titel: 'Extra 2' })
   const m = normaliseer(d)
-  assert.equal(m.secties.find((s) => s.soort === 'diensten').items.length, 4)
-  assert.ok(m.waarschuwingen.some((w) => w.includes('maximaal 4')))
+  assert.equal(m.secties.find((s) => s.soort === 'diensten').items.length, 5)
+  assert.ok(m.waarschuwingen.some((w) => w.includes('maximaal 5')))
 })
 
 test('artikelen: nieuwste eerst, maximaal 3, lege stand zonder verzonnen content', () => {

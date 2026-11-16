@@ -66,7 +66,7 @@ Een veilige AI-ontwikkelomgeving waarmee je team zelfstandig software kan bouwen
 
 Regels met `-`, `•` of `*` zijn de punten (het ontwerp toont er maximaal 5); de overige tekst is de korte
 beschrijving (voor schermlezers). Volgorde van de kaarten = volgorde in One Studio; de nummers
-01–04 en de wisseltekst in de hero volgen automatisch. Meer dan 4 kaarten: alleen de eerste 4 worden
+01–04 en de wisseltekst in de hero volgen automatisch. Meer dan 5 kaarten: alleen de eerste 5 worden
 getoond (met waarschuwing in de buildlog).
 
 Andere blokken op de homepage worden veilig genegeerd (met een waarschuwing in de buildlog).
