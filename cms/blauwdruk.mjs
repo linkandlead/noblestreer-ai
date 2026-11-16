@@ -180,7 +180,7 @@ export default {
             tekst: 'Vertel ons wat je wilt ontwikkelen of wat je al met AI hebt gebouwd. We denken graag met je mee.',
             knoptekst: 'Plan een gesprek',
             knop: '#contact-formulier',
-            meta: [{ tekst: 'Op afspraak' }, { tekst: 'Persoonlijk technisch aanspreekpunt' }],
+            meta: [{ tekst: 'Op afspraak' }, { tekst: 'Vaste contactpersoon in het team' }],
           },
         },
         {
