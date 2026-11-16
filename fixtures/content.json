@@ -362,49 +362,49 @@
     "teamleden": [
       {
         "id": "fixture-team-1",
-        "naam": "Teamlid 1",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Sanne de Vries",
+        "functie": "AI-architect",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       },
       {
         "id": "fixture-team-2",
-        "naam": "Teamlid 2",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Daan Bakker",
+        "functie": "Lead developer",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       },
       {
         "id": "fixture-team-3",
-        "naam": "Teamlid 3",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Noor El Amrani",
+        "functie": "Security- en privacyspecialist",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       },
       {
         "id": "fixture-team-4",
-        "naam": "Teamlid 4",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Thomas Visser",
+        "functie": "Platform engineer",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       },
       {
         "id": "fixture-team-5",
-        "naam": "Teamlid 5",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Lisa Jansen",
+        "functie": "Product owner AI-producten",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       },
       {
         "id": "fixture-team-6",
-        "naam": "Teamlid 6",
-        "functie": "Functie volgt",
-        "tekst": "Plaatshouder.",
+        "naam": "Ruben Mulder",
+        "functie": "Support en onboarding",
+        "tekst": "Fictief teamlid (testdata).",
         "foto": null,
         "linkedin": null
       }
