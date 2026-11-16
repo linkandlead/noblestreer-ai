@@ -147,6 +147,8 @@ function sectieHero(c, index) {
     cta: maakLink(c.cta_primair_label, c.cta_primair_link),
     beeld: c.media_type === 'afbeelding' || (!c.media_type && c.media_afbeelding) ? veiligeAfbeelding(c.media_afbeelding) : null,
     beeldAlt: tekst(c.media_alt, 250),
+    // USP's van het Header-blok = de wisselende laatste regel (klantvoordelen). Leeg → dienstnamen.
+    usps: lijst(c.usps).map((u) => rotatieLabel(obj(u).tekst)).filter(Boolean).slice(0, 6),
     focus: { x: getal(c.focal_x, 50), y: getal(c.focal_y, 47) },
   }
 }
@@ -338,9 +340,11 @@ export function normaliseer(rauw, { slug = '/' } = {}) {
     waarschuwingen.push(`Pagina "${slug}" niet gevonden of niet gepubliceerd in het CMS.`)
   }
 
-  // Wisseltermen in de hero: afgeleid uit de dienstenkaarten (geen dubbele content).
+  // Wisseltermen in de hero: bij voorkeur de USP's van het Header-blok (klantvoordelen, beheerd in
+  // One Studio); zijn die leeg, dan de titels van de dienstkaarten (geen dubbele content).
+  const hero = secties.find((s) => s.soort === 'hero' && s.niveau === 1)
   const diensten = secties.find((s) => s.soort === 'diensten')
-  const rotatie = diensten ? diensten.items.map((d) => d.rotatieLabel).filter(Boolean) : []
+  const rotatie = hero?.usps?.length ? hero.usps : diensten ? diensten.items.map((d) => d.rotatieLabel).filter(Boolean) : []
 
   return {
     site,

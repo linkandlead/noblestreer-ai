@@ -187,3 +187,11 @@ test('pagina ontbreekt (CMS leeg) → geen secties, waarschuwing', () => {
   assert.equal(m.secties.length, 0)
   assert.ok(m.waarschuwingen.length > 0)
 })
+
+test("hero-USP's gaan vóór dienstnamen als wisseltermen; leeg → dienstnamen", () => {
+  const d = kopie()
+  blok(d, 'header').content.usps = [{ tekst: 'Veilig opgezet' }, { tekst: 'Klaar voor je klanten.' }, { tekst: '' }]
+  assert.deepEqual(normaliseer(d).rotatie, ['Veilig opgezet.', 'Klaar voor je klanten.'])
+  blok(d, 'header').content.usps = []
+  assert.equal(normaliseer(d).rotatie[0], 'AI Workspace.')
+})

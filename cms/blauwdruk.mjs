@@ -75,7 +75,7 @@ export default {
           content: {
             layout: 'achtergrond',
             hoogte: 'fullscreen',
-            eyebrow: 'Technische zekerheid voor een nieuwe generatie makers',
+            eyebrow: 'Voor ondernemers en teams die zelf software bouwen met AI',
             heading: 'Zelf bouwen met AI.',
             subheading:
               'Jouw ideeën verdienen een sterke technische basis. Wij helpen je AI-software professioneel te bouwen, controleren en publiceren.',
@@ -88,6 +88,13 @@ export default {
             focal_y: 47,
             overlay: 'donker',
             extras: 'geen',
+            // USP's = de wisselende laatste regel van de kop (klantvoordelen).
+            usps: [
+              { tekst: 'Veilig opgezet.' },
+              { tekst: 'Klaar voor je klanten.' },
+              { tekst: 'Met een expert achter je.' },
+              { tekst: 'Zonder technische zorgen.' },
+            ],
           },
         },
         {

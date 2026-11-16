@@ -43,7 +43,7 @@ bezoeker ──▶ statische, server-gerenderde HTML (dist/) ──▶ formulier
 |---|---|---|
 | Header + fullscreen menu | Site > Navigatie en instellingen (`sites.config.merk`) | `naam`, `hoofd_nav[]` (label/URL/volgorde), `primaire_actie`, `slogan` |
 | Hero | **Header (hero)** `header`, lay-out *achtergrond*, hoogte *fullscreen* | `eyebrow`, `heading` (h1, over 2 regels), `subheading`, `cta_primair_label/link`, `media_afbeelding`, `media_alt`, `focal_x/y` |
-| Wisselende laatste regel | afgeleid uit de dienstkaarten (geen dubbele content) | titel van elke kaart + "." |
+| Wisselende laatste regel | **Header (hero)** › veld *USP's* (klantvoordelen); leeg → titels van de dienstkaarten | per USP één term, max. 6 |
 | Diensten (getrapt raster) | **Kaartenrij** `kaarten`, 4 kolommen | `titel`, `intro`, `eyebrow`; per kaart `titel`, `tekst`, `link` |
 | Team / over ons | **Tekst met beeld** `mediatekst` | `titel` (zinnen → regels), `alineas[]`, `punten[]`, `beeld`, `beeld_alt`, `knop`/`knoptekst`, `eyebrow` = fotolabel ("Beeld ter illustratie") |
 | Inzichten | **Artikelen** `artikelen_grid` + collectie *Artikelen* | `titel`, `maximaal` (≤ 3), `filter_rubriek`; per artikel `titel`, `rubriek`, `gepubliceerd_op`, `samenvatting`, `foto`, `foto_alt`, `hoofdtekst`, `slug` |
