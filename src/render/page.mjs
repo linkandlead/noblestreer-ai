@@ -3,7 +3,7 @@
 // view-source zonder JavaScript (eis uit KLANT-KOPPELING.md §4).
 
 import { attr, esc, html } from './html.mjs'
-import { FullScreenMenu, Footer, SECTIES, SiteHeader } from './components.mjs'
+import { ArtikelKaart, ArtikelMeta, FullScreenMenu, Footer, SECTIES, SiteHeader, maakHref } from './components.mjs'
 
 function canonical(site, pad) {
   return site.domein ? `https://${site.domein}${pad}` : null
@@ -87,25 +87,61 @@ function alineas(t) {
 
 // Artikeldetail. hoofdtekst wordt als platte tekst behandeld (alinea's op lege regels, regels die
 // met "## " beginnen worden tussenkoppen) — nooit als HTML.
+function leestijd(t) {
+  const woorden = String(t || '').split(/\s+/).filter(Boolean).length
+  return woorden ? `${Math.max(1, Math.round(woorden / 200))} min lezen` : ''
+}
+
 export function artikelHtml(ctx, a) {
   const { site } = ctx
   const delen = alineas(a.hoofdtekst).map((blok) =>
     blok.startsWith('## ') ? html`<h2>${esc(blok.slice(3))}</h2>` : html`<p>${esc(blok).replace(/\n/g, '<br>')}</p>`,
   )
-  const body = html`<article class="article-page section-pad" aria-labelledby="artikel-titel">
-    <a class="text-link back-link" href="/#inzichten"><span aria-hidden="true">←</span> Alle inzichten</a>
+  const lt = leestijd(`${a.antwoordblok} ${a.hoofdtekst}`)
+  // "Lees verder": de drie nieuwste andere artikelen, in dezelfde kaarten als op de homepage.
+  const meer = (ctx.model?.artikelen ?? []).filter((x) => x.slug !== a.slug).slice(0, 3)
+  const contact = ctx.contactLink
+  const body = html`<article class="article-page" aria-labelledby="artikel-titel">
     <header class="article-head">
-      <span class="article-meta">${a.rubriek ? html`<span>${esc(a.rubriek)}</span>` : ''}${a.datum ? html`<span><time datetime="${attr(a.datum)}">${esc(a.datumLabel)}</time></span>` : ''}</span>
+      <a class="text-link back-link" href="/#inzichten"><span class="arrow" aria-hidden="true">←</span> Alle inzichten</a>
+      ${ArtikelMeta(a, lt ? [esc(lt)] : [])}
       <h1 id="artikel-titel">${esc(a.titel)}</h1>
       ${a.samenvatting ? html`<p class="article-lead">${esc(a.samenvatting)}</p>` : ''}
+      <span class="corner-marker" aria-hidden="true"></span>
     </header>
-    ${a.foto ? html`<img class="article-hero" src="${attr(a.foto)}" alt="${attr(a.fotoAlt)}" decoding="async">` : ''}
-    <div class="article-body">
-      ${a.antwoordblok ? html`<p class="article-answer">${esc(a.antwoordblok)}</p>` : ''}
-      ${delen}
-      ${a.auteur ? html`<p class="article-author">Door ${esc(a.auteur)}</p>` : ''}
+    ${a.foto ? html`<span class="duotoon article-hero-wrap"><img class="article-hero" src="${attr(a.foto)}" alt="${attr(a.fotoAlt)}" decoding="async" fetchpriority="high"></span>` : ''}
+    <div class="article-layout">
+      <aside class="article-aside" aria-label="Over dit artikel">
+        <dl class="article-facts">
+          ${a.rubriek ? html`<div><dt>Rubriek</dt><dd>${esc(a.rubriek)}</dd></div>` : ''}
+          ${a.datum ? html`<div><dt>Gepubliceerd</dt><dd><time datetime="${attr(a.datum)}">${esc(a.datumLabel)}</time></dd></div>` : ''}
+          ${lt ? html`<div><dt>Leestijd</dt><dd>${esc(lt.replace(' lezen', ''))}</dd></div>` : ''}
+          ${a.auteur ? html`<div><dt>Auteur</dt><dd>${esc(a.auteur)}</dd></div>` : ''}
+        </dl>
+        ${contact ? html`<a class="text-link" href="${attr(maakHref(ctx, contact.href))}">${esc(contact.label)} <span class="arrow" aria-hidden="true">↗</span></a>` : ''}
+      </aside>
+      <div class="article-body">
+        ${a.antwoordblok ? html`<div class="article-answer"><p class="eyebrow">In het kort</p><p>${esc(a.antwoordblok)}</p></div>` : ''}
+        ${delen}
+      </div>
     </div>
-  </article>`
+    ${
+      contact
+        ? html`<section class="article-cta" aria-labelledby="artikel-cta-kop">
+      <h2 id="artikel-cta-kop">Vragen over dit onderwerp?</h2>
+      <a class="button-mint" href="${attr(maakHref(ctx, contact.href))}">${esc(contact.label)} <span aria-hidden="true">↗</span></a>
+    </section>`
+        : ''
+    }
+  </article>
+  ${
+    meer.length
+      ? html`<section class="articles article-more-section" aria-labelledby="lees-verder-kop">
+    <div class="section-heading"><h2 id="lees-verder-kop">Lees verder.</h2><a class="text-link" href="/#inzichten">Alle inzichten <span class="arrow" aria-hidden="true">↗</span></a></div>
+    <div class="articles-grid articles-grid--gelijk">${meer.map((x) => ArtikelKaart(x))}</div>
+  </section>`
+      : ''
+  }`
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'Article',

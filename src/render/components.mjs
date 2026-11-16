@@ -109,7 +109,7 @@ export function TeamGrid(ctx, s) {
       s.leden.length
         ? html`<ul class="team-grid" role="list">${s.leden.map(
             (l) => html`<li class="team-member" data-reveal>
-              ${l.foto ? html`<img class="team-member-photo" src="${attr(l.foto)}" alt="${attr(l.fotoAlt || l.naam)}" loading="lazy" decoding="async">` : html`<span class="team-member-photo team-member-photo--leeg" aria-hidden="true">${esc(initialen(l.naam))}</span>`}
+              ${l.foto ? html`<span class="duotoon team-member-photo-wrap"><img class="team-member-photo" src="${attr(l.foto)}" alt="${attr(l.fotoAlt || l.naam)}" loading="lazy" decoding="async"></span>` : html`<span class="team-member-photo team-member-photo--leeg" aria-hidden="true">${esc(initialen(l.naam))}</span>`}
               ${l.functie ? html`<p class="team-member-role">${esc(l.functie)}</p>` : ''}
               <h3>${esc(l.naam)}</h3>
               ${l.tekst ? html`<p class="team-member-text">${esc(l.tekst)}</p>` : ''}
@@ -135,6 +135,24 @@ export function LogoStrip(ctx, s) {
   </section>`
 }
 
+// Eén artikelkaart (homepage en "Lees verder" op de artikelpagina).
+export function ArtikelKaart(a, { eager = false, kop = 'h3' } = {}) {
+  return html`<article class="article-card" data-reveal>
+    <a class="article-link" href="/inzichten/${attr(a.slug)}/">
+      <span class="article-figure">${a.foto ? html`<span class="duotoon"><img class="article-cover" src="${attr(a.foto)}" alt="${attr(a.fotoAlt)}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></span>` : html`<span class="article-cover article-cover--leeg" aria-hidden="true"></span>`}<span class="arrow-square" aria-hidden="true">↗</span></span>
+      ${ArtikelMeta(a)}
+      <${kop}>${esc(a.titel)}</${kop}>
+      ${a.samenvatting ? html`<p>${esc(a.samenvatting)}</p>` : ''}
+      <span class="article-more">Lees het artikel <span class="arrow" aria-hidden="true">↗</span></span>
+    </a>
+  </article>`
+}
+
+export function ArtikelMeta(a, extra = []) {
+  const delen = [a.rubriek ? esc(a.rubriek) : '', a.datum ? html`<time datetime="${attr(a.datum)}">${esc(a.datumLabel)}</time>` : '', ...extra].filter(Boolean)
+  return html`<span class="article-meta">${delen.map((d, i) => html`${i ? '<span class="article-meta-sep" aria-hidden="true">/</span>' : ''}<span>${d}</span>`)}</span>`
+}
+
 export function ArticleGrid(ctx, s) {
   return html`<section id="inzichten" class="articles" aria-labelledby="articles-heading">
     <div class="section-heading" data-reveal>
@@ -144,15 +162,7 @@ export function ArticleGrid(ctx, s) {
     ${
       s.artikelen.length
         ? html`<div class="articles-grid count-${s.artikelen.length}">${s.artikelen.map(
-            (a, i) => html`<article class="article-card" data-reveal>
-              <a class="article-link" href="/inzichten/${attr(a.slug)}/">
-                ${a.foto ? html`<img class="article-cover" src="${attr(a.foto)}" alt="${attr(a.fotoAlt)}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async">` : html`<span class="article-cover article-cover--leeg" aria-hidden="true"></span>`}
-                <span class="article-meta">${a.rubriek ? html`<span>${esc(a.rubriek)}</span>` : ''}${a.datum ? html`<span><time datetime="${attr(a.datum)}">${esc(a.datumLabel)}</time></span>` : ''}</span>
-                <h3>${esc(a.titel)}</h3>
-                ${a.samenvatting ? html`<p>${esc(a.samenvatting)}</p>` : ''}
-                <span class="article-more">Lees het artikel <span aria-hidden="true">↗</span></span>
-              </a>
-            </article>`,
+            (a, i) => ArtikelKaart(a, { eager: i === 0 }),
           )}</div>`
         : html`<p class="empty-state" data-reveal>Er zijn nog geen inzichten gepubliceerd. Nieuwe artikelen verschijnen hier zodra ze live staan.</p>`
     }
